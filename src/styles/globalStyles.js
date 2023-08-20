@@ -19,7 +19,7 @@ export const flexBoxRow = {
     gap: "1rem",
     color:"white",
     width: "250px",
-    m: "auto",
+    mt: "1.2rem",
     backgroundColor:"#3E97EF",
     padding: "2rem 1rem",
     justifyContent: "center",
@@ -44,8 +44,24 @@ export const flexContainer = {
     
 };
 
+export const registerContainer= {
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+  width: "300px",
+  m: "auto",
+  padding: "2rem 1rem",
+  alignItems: "center",
+  border:"1px solid black",
+  borderRadius: "1rem",
+  backgroundColor:"white",
+  boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px"
+  
+};
+
 export const btnStyle = {
   variant: "contained",
+  m:"auto",
   mt:"2rem",
   type: "submit",
   backgroundColor: "#3E97EF",
@@ -71,10 +87,19 @@ export const loginStyle={
     width:"100vw",
     height:"100vh",
     backgroundPosition:"center",
-    backgroundSize:"cover"
-    
+    backgroundSize:"cover",
+  
+}
 
 
-    
+export const registerStyle={
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+  backgroundImage:`url(${bgImage})`,
+  width:"100vw",
+  height:"100vh",
+  backgroundPosition:"center",
+  backgroundSize:"cover",
 
 }

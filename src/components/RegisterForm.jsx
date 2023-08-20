@@ -1,0 +1,239 @@
+import Box from "@mui/material/Box";
+import { Formik, Form } from "formik";
+import { object, string, number, date } from "yup";
+import useAuthCall from "../hooks/useAuthCall";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Input from '@mui/material/Input';
+
+import {
+    btnStyle,
+  flexBoxRow,
+  icon,
+  registerContainer,
+} from "../styles/globalStyles";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import GoogleIcon from "@mui/icons-material/Google";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import { Typography } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useState } from "react";
+
+const AuthForm = () => {
+  const { register } = useAuthCall();
+  const [visible, setVisible] = useState(true);
+  const setPass = () => {
+    setVisible(!visible);
+  };
+
+  let loginScheme = object({
+    email: string()
+      .email("Please enter a valid email")
+      .required("This field is required"),
+    password: string()
+      .required("Password is required")
+      .min(8, "Password must at least 8 characters")
+      .max(16, "Password must be at most 16 characters")
+      .matches(/\d+/, "There must be at least 1 number")
+      .matches(/[a-z]/, "There must be at least one lower case")
+      .matches(/[A-Z]/, "There must be at least one capital case")
+      .matches(
+        /[!,?{}><%&$#+-.]/,
+        "There must be at least one spacial character"
+      ),
+    username: string()
+      .min(2, "Username must at least 2 characters")
+      .required("This field is required"),
+  });
+
+  return (
+    <Box sx={registerContainer}>
+      <Typography
+        sx={{
+          fontWeight: "700",
+          fontFamily: "Ruwudu, serif",
+          fontSize: "1.5rem",
+        }}
+      >
+        REGISTER
+      </Typography>
+      <Formik
+        initialValues={{ email: "", password: "", username: "", first_name:"", last_name:"", image:"", bio:""}}
+
+        validationSchema={loginScheme}
+        onSubmit={(values, action) => {
+          register({...values, password2:values.password});
+          action.resetForm();
+          action.setSubmitting(false);
+        }}
+      >
+        {({ handleChange, handleBlur, values, touched, errors }) => (
+          <Form>
+            <TextField
+              variant="standard"
+              id="first_name"
+              label="Name"
+              name="first_name"
+              type="text"
+              value={values.first_name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.first_name && Boolean(errors.first_name)}
+              helperText={errors.first_name}
+              sx={{ width: "270px", margin: "0.5rem" }}
+            />
+            <TextField
+              id="last_name"
+              label="Last Name"
+              name="last_name"
+              variant="standard"
+              type="text"
+              value={values.last_name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.last_name && Boolean(errors.last_name)}
+              helperText={errors.last_name}
+              sx={{ width: "270px", margin: "0.5rem" }}
+            />
+
+            <TextField
+              variant="standard"
+              id="username"
+              type="text"
+              label="Username"
+              name="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              sx={{ width: "270px", margin: "0.5rem" }}
+              error={touched.username && Boolean(errors.username)}
+              helperText={errors.username}
+            />
+            <TextField
+              id="email"
+              label="Email"
+              name="email"
+              variant="standard"
+              type="email"
+              sx={{ width: "270px", margin: "0.5rem" }}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email && Boolean(errors.email)}
+              helperText={errors.email}
+            />
+ <Input
+              id="image"
+              label="Image"
+              name="image"
+              variant="standard"
+              type="url"
+              sx={{ width: "270px", margin: "0.5rem" }}
+              value={values.image}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.image && Boolean(errors.image)}
+              helperText={errors.image}
+            />
+<TextField
+              id="bio"
+              label="Bio"
+              name="bio"
+              variant="standard"
+              type="text"
+              sx={{ width: "270px", margin: "0.5rem" }}
+              value={values.bio}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.bio && Boolean(errors.bio)}
+              helperText={errors.bio}
+            />
+
+
+            <Box sx={{mt:"0.5rem", width:"270px"}}>
+            {visible ? (
+              <Box
+                sx={{
+                  width: "270px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "end",
+                }}
+              >
+                <TextField
+                  variant="standard"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{
+                    width: "255px",
+                    margin: "0.5rem",
+                    position: "absolute",
+                  }}
+                  error={touched.password && Boolean(errors.password)}
+                  helperText={errors.password}
+                />
+                <VisibilityOffIcon
+                  onClick={setPass}
+                  sx={{ position: "relative" }}
+                />
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                    width: "270px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "end",
+                }}
+              >
+                <TextField
+                  variant="standard"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="text"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{
+                    width: "255px",
+                    margin: "0.5rem",
+                    position: "absolute",
+                  }}
+                  error={touched.password && Boolean(errors.password)}
+                  helperText={errors.password}
+                />
+                <VisibilityIcon
+                  onClick={setPass}
+                  sx={{ position: "relative" }}
+                />
+              </Box>
+              
+
+            )}
+ <Button type="submit" sx={btnStyle}>Register</Button>
+
+            </Box>
+
+          </Form>
+        )}
+      </Formik>
+
+      <Box sx={flexBoxRow}>
+        <GitHubIcon sx={icon} />
+        <FacebookIcon sx={icon} />
+        <GoogleIcon sx={icon} />
+      </Box>
+    </Box>
+  );
+};
+
+export default AuthForm;

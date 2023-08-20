@@ -30,14 +30,17 @@ const useAuthCall = () => {
 
   const register = async (userData) => {
     dispatch(fetchStart);
+    console.log("register");
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}register/`,
+        `${process.env.REACT_APP_BASE_URL}users/register/`,
         userData
       );
       dispatch(registerSuccess(data));
+      navigate("/")
     } catch (error) {
       dispatch(fetchFail());
+      console.log(error);
     }
   };
   return { login, register };
