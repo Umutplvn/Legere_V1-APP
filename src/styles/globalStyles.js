@@ -1,12 +1,11 @@
-import { hover } from "@testing-library/user-event/dist/hover";
 import bgImage from "../assets/loginWallpaper.jpeg"
 
 
 export const flexBox = {
   display: "flex",
+ width:"100%",
   flexDirection: "column",
   gap: "1.8rem",
-  width: "320px",
   m: "auto",
   padding: "2rem 1rem",
   justifyContent: "center",
@@ -16,6 +15,7 @@ export const flexBox = {
 
 export const flexBoxRow = {
     display: "flex",
+    
     gap: "1rem",
     color:"white",
     width: "250px",
@@ -31,9 +31,11 @@ export const flexBoxRow = {
 export const flexContainer = {
     display: "flex",
     flexDirection: "column",
+    justifyContent:"center",
+    alignItems:"center",
     gap: "1rem",
-    width: "300px",
     m: "auto",
+    maxWidth:"300px",
     padding: "2rem 1rem",
     justifyContent: "center",
     alignItems: "center",
@@ -48,7 +50,6 @@ export const registerContainer= {
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
-  width: "300px",
   m: "auto",
   padding: "2rem 1rem",
   alignItems: "center",
@@ -56,6 +57,7 @@ export const registerContainer= {
   borderRadius: "1rem",
   backgroundColor:"white",
   boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px"
+  
   
 };
 
@@ -84,10 +86,11 @@ export const loginStyle={
     alignItems:"center",
     justifyContent:"center",
     backgroundImage:`url(${bgImage})`,
-    width:"100vw",
-    height:"100vh",
     backgroundPosition:"center",
     backgroundSize:"cover",
+    height:"100vh",
+    backgroundAttachment:"fixed"
+    
   
 }
 

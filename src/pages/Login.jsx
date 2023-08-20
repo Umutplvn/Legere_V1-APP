@@ -7,10 +7,9 @@ import { loginStyle } from "../styles/globalStyles";
 const Login = () => {
 
   return (
-    <Box 
-   sx={loginStyle}>
+ 
       <AuthForm/>
-    </Box>
+ 
   );
 };
 
