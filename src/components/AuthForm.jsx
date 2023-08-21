@@ -49,22 +49,18 @@ const AuthForm = () => {
 
   return (
     <Box component={"div"} sx={loginStyle}>
-      <Grid container xs={10} sm={6} md={4} lg={3} sx={flexContainer}>
-        <Grid item >
-          <Typography
-            sx={{
-              fontWeight: "700",
-              fontFamily: "Ruwudu, serif",
-              fontSize: "1.5rem",
-              textAlign: "center",
-            }}
-          >
-            LOGIN
-          </Typography>
-        </Grid>
+      <Grid container  sx={flexContainer}>
+        <Typography
+          sx={{
+            fontWeight: "700",
+            fontFamily: "Ruwudu, serif",
+            fontSize: "1.5rem",
+            margin: "auto",
+          }}
+        >
+          LOGIN
+        </Typography>
 
-
-        <Grid item m={"auto"} sx={flexBox}>
         <Formik
           initialValues={{ email: "", password: "", username: "" }}
           validationSchema={loginScheme}
@@ -75,6 +71,7 @@ const AuthForm = () => {
           }}
         >
           {({ handleChange, handleBlur, values, touched, errors }) => (
+            <Box m={"auto"} sx={flexBox}>
               <Form>
                 <TextField
                   variant="standard"
@@ -87,7 +84,7 @@ const AuthForm = () => {
                   onBlur={handleBlur}
                   error={touched.username && Boolean(errors.username)}
                   helperText={errors.username}
-                  sx={{width:"100%"}}
+                  sx={{ width: "100%" }}
                 />
                 <TextField
                   variant="standard"
@@ -100,14 +97,13 @@ const AuthForm = () => {
                   onBlur={handleBlur}
                   error={touched.email && Boolean(errors.email)}
                   helperText={errors.email}
-                  sx={{width:"100%"}}
-
+                  sx={{ width: "100%" }}
                 />
 
                 {visible ? (
                   <Box
                     sx={{
-                      width: "270px",
+                      width: "100%",
                       display: "flex",
                       flexDirection: "row",
                       alignItems: "center",
@@ -125,15 +121,14 @@ const AuthForm = () => {
                       onBlur={handleBlur}
                       error={touched.password && Boolean(errors.password)}
                       helperText={errors.password}
-                      sx={{width:"100%"}}
-
+                      sx={{ width: "100%" }}
                     />
                     <VisibilityOffIcon onClick={setPass} />
                   </Box>
                 ) : (
                   <Box
                     sx={{
-                      width: "270px",
+                      width: "100%",
                       display: "flex",
                       position: "inherit",
                       flexDirection: "row",
@@ -150,7 +145,7 @@ const AuthForm = () => {
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      sx={{width:"100%"}}
+                      sx={{ width: "100%" }}
                       error={touched.password && Boolean(errors.password)}
                       helperText={errors.password}
                     />
@@ -162,9 +157,9 @@ const AuthForm = () => {
                   Login
                 </Button>
               </Form>
+            </Box>
           )}
         </Formik>
-          </Grid>
 
         <Box sx={flexBoxRow}>
           <GitHubIcon sx={icon} />

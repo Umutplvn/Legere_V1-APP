@@ -4,10 +4,10 @@ import { object, string, number, date } from "yup";
 import useAuthCall from "../hooks/useAuthCall";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Input from '@mui/material/Input';
+import Input from "@mui/material/Input";
 
 import {
-    btnStyle,
+  btnStyle,
   flexBoxRow,
   icon,
   registerContainer,
@@ -15,7 +15,7 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
@@ -54,175 +54,195 @@ const AuthForm = () => {
           fontWeight: "700",
           fontFamily: "Ruwudu, serif",
           fontSize: "1.5rem",
+          m: "auto",
         }}
       >
         REGISTER
       </Typography>
-      <Formik
-        initialValues={{ email: "", password: "", username: "", first_name:"", last_name:"", image:"", bio:""}}
 
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          username: "",
+          first_name: "",
+          last_name: "",
+          image: "",
+          bio: "",
+        }}
         validationSchema={loginScheme}
         onSubmit={(values, action) => {
-          register({...values, password2:values.password});
+          register({ ...values, password2: values.password });
           action.resetForm();
           action.setSubmitting(false);
         }}
       >
         {({ handleChange, handleBlur, values, touched, errors }) => (
           <Form>
-            <TextField
-              variant="standard"
-              id="first_name"
-              label="Name"
-              name="first_name"
-              type="text"
-              value={values.first_name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.first_name && Boolean(errors.first_name)}
-              helperText={errors.first_name}
-              sx={{ width: "270px", margin: "0.5rem" }}
-            />
-            <TextField
-              id="last_name"
-              label="Last Name"
-              name="last_name"
-              variant="standard"
-              type="text"
-              value={values.last_name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.last_name && Boolean(errors.last_name)}
-              helperText={errors.last_name}
-              sx={{ width: "270px", margin: "0.5rem" }}
-            />
-
-            <TextField
-              variant="standard"
-              id="username"
-              type="text"
-              label="Username"
-              name="username"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              sx={{ width: "270px", margin: "0.5rem" }}
-              error={touched.username && Boolean(errors.username)}
-              helperText={errors.username}
-            />
-            <TextField
-              id="email"
-              label="Email"
-              name="email"
-              variant="standard"
-              type="email"
-              sx={{ width: "270px", margin: "0.5rem" }}
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.email && Boolean(errors.email)}
-              helperText={errors.email}
-            />
- <Input
-              id="image"
-              label="Image"
-              name="image"
-              variant="standard"
-              type="url"
-              sx={{ width: "270px", margin: "0.5rem" }}
-              value={values.image}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.image && Boolean(errors.image)}
-              helperText={errors.image}
-            />
-<TextField
-              id="bio"
-              label="Bio"
-              name="bio"
-              variant="standard"
-              type="text"
-              sx={{ width: "270px", margin: "0.5rem" }}
-              value={values.bio}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.bio && Boolean(errors.bio)}
-              helperText={errors.bio}
-            />
-
-
-            <Box sx={{mt:"0.5rem", width:"270px"}}>
-            {visible ? (
-              <Box
-                sx={{
-                  width: "270px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "end",
-                }}
-              >
+            <Grid container>
+              <Grid item xs={12} md={6}>
                 <TextField
                   variant="standard"
-                  id="password"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  sx={{
-                    width: "255px",
-                    margin: "0.5rem",
-                    position: "absolute",
-                  }}
-                  error={touched.password && Boolean(errors.password)}
-                  helperText={errors.password}
-                />
-                <VisibilityOffIcon
-                  onClick={setPass}
-                  sx={{ position: "relative" }}
-                />
-              </Box>
-            ) : (
-              <Box
-                sx={{
-                    width: "270px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "end",
-                }}
-              >
-                <TextField
-                  variant="standard"
-                  id="password"
-                  label="Password"
-                  name="password"
+                  id="first_name"
+                  label="Name"
+                  name="first_name"
                   type="text"
-                  value={values.password}
+                  value={values.first_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  sx={{
-                    width: "255px",
-                    margin: "0.5rem",
-                    position: "absolute",
-                  }}
-                  error={touched.password && Boolean(errors.password)}
-                  helperText={errors.password}
+                  error={touched.first_name && Boolean(errors.first_name)}
+                  helperText={errors.first_name}
+                  sx={{ width: "90%", margin: "0.5rem" }}
                 />
-                <VisibilityIcon
-                  onClick={setPass}
-                  sx={{ position: "relative" }}
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <TextField
+                  id="last_name"
+                  label="Last Name"
+                  name="last_name"
+                  variant="standard"
+                  type="text"
+                  value={values.last_name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.last_name && Boolean(errors.last_name)}
+                  helperText={errors.last_name}
+                  sx={{ width: "90%", margin: "0.5rem" }}
                 />
-              </Box>
-              
+              </Grid>
 
-            )}
- <Button type="submit" sx={btnStyle}>Register</Button>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  variant="standard"
+                  id="username"
+                  type="text"
+                  label="Username"
+                  name="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{ width: "90%", margin: "0.5rem" }}
+                  error={touched.username && Boolean(errors.username)}
+                  helperText={errors.username}
+                />
+              </Grid>
 
-            </Box>
+              <Grid item xs={12} md={6}>
+                <TextField
+                  id="email"
+                  label="Email"
+                  name="email"
+                  variant="standard"
+                  type="email"
+                  sx={{ width: "90%", margin: "0.5rem" }}
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.email && Boolean(errors.email)}
+                  helperText={errors.email}
+                />
+              </Grid>
 
+              <Grid item xs={12} md={6}>
+                <TextField
+                  id="image"
+                  label="Image"
+                  placeholder="Image"
+                  name="image"
+                  variant="standard"
+                  type="url"
+                  sx={{ width: "90%", margin: "0.5rem" }}
+                  value={values.image}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.image && Boolean(errors.image)}
+                  helperText={errors.image}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                
+                <Box >
+                  {visible ? (
+                    <Box
+                      sx={{
+                        width: "95%",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <TextField
+                        variant="standard"
+                        id="password"
+                        label="Password"
+                        name="password"
+                        type="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        sx={{
+                          margin: "0.5rem",
+                          width: "90%",
+                        }}
+                        error={touched.password && Boolean(errors.password)}
+                        helperText={errors.password}
+                      />
+                      <VisibilityOffIcon onClick={setPass}  sx={{width:"10%"}} />
+                    </Box>
+                  ) : (
+                    <Box
+                      sx={{
+                        width: "95%",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <TextField
+                        variant="standard"
+                        id="password"
+                        label="Password"
+                        name="password"
+                        type="text"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        sx={{
+                          margin:"0.5rem",
+                          width: "90%",
+                        }}
+                        error={touched.password && Boolean(errors.password)}
+                        helperText={errors.password}
+                      />
+                      <VisibilityIcon onClick={setPass} sx={{width:"10%"}} />
+                    </Box>
+                  )}
+                </Box>
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  id="bio"
+                  label="Bio"
+                  name="bio"
+                  variant="standard"
+                  type="text"
+                  sx={{ width: "90%", margin: "0.5rem" }}
+                  value={values.bio}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.bio && Boolean(errors.bio)}
+                  helperText={errors.bio}
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit" sx={btnStyle}>
+              Register
+            </Button>
           </Form>
         )}
       </Formik>

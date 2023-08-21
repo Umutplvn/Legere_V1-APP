@@ -3,9 +3,10 @@ import bgImage from "../assets/loginWallpaper.jpeg"
 
 export const flexBox = {
   display: "flex",
- width:"100%",
+ m:"auto",
   flexDirection: "column",
   gap: "1.8rem",
+  // width: "100%",
   m: "auto",
   padding: "2rem 1rem",
   justifyContent: "center",
@@ -31,33 +32,51 @@ export const flexBoxRow = {
 export const flexContainer = {
     display: "flex",
     flexDirection: "column",
-    justifyContent:"center",
-    alignItems:"center",
+   alignItems:"center",
     gap: "1rem",
-    m: "auto",
-    maxWidth:"300px",
-    padding: "2rem 1rem",
+    m: "30px",
+    maxWidth:"400px",
+    minWidth:"320px",
     justifyContent: "center",
-    alignItems: "center",
     border:"1px solid black",
     borderRadius: "1rem",
     backgroundColor:"white",
-    boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px"
+    boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px",
+    padding:"1rem"
     
 };
+
+
+export const loginStyle={
+  display:"flex",
+  alignItems:"center",
+  justifyContent:"center",
+  backgroundImage:`url(${bgImage})`,
+  backgroundPosition:"center",
+  backgroundSize:"cover",
+  height:"100vh",
+  width:"100vw",
+  backgroundAttachment:"fixed"
+  
+
+}
+
 
 export const registerContainer= {
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
-  m: "auto",
+  m: "20px",
+  maxWidth:"600px",
+  minWidth:"300px",
+  maxHeight:"85vh",
   padding: "2rem 1rem",
   alignItems: "center",
   border:"1px solid black",
   borderRadius: "1rem",
   backgroundColor:"white",
-  boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px"
-  
+  boxShadow:  "rgba(0, 0, 0, 0.24) 12px 3px 8px",
+  overflow:"scroll"
   
 };
 
@@ -81,18 +100,6 @@ export const icon={
 }
 
 
-export const loginStyle={
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
-    backgroundImage:`url(${bgImage})`,
-    backgroundPosition:"center",
-    backgroundSize:"cover",
-    height:"100vh",
-    backgroundAttachment:"fixed"
-    
-  
-}
 
 
 export const registerStyle={
@@ -100,9 +107,9 @@ export const registerStyle={
   alignItems:"center",
   justifyContent:"center",
   backgroundImage:`url(${bgImage})`,
-  width:"100vw",
   height:"100vh",
   backgroundPosition:"center",
   backgroundSize:"cover",
-
+  backgroundAttachment:"fixed"
+  
 }
