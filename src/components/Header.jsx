@@ -18,7 +18,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useSelector } from "react-redux";
-// import Logo from "../assets/icon.jpg"
+import appIcon from "../assets/appIcon.jpg"
 
 
 const Header = () => {
@@ -99,7 +99,7 @@ const Header = () => {
               cursor: "pointer",
             }}
             alt="LEGER"
-            // src={Logo}
+            src={appIcon}
             onClick={() => navigate("/")}
           />
           <Typography
@@ -162,7 +162,7 @@ const Header = () => {
               mr: 1,
             }}
             alt="LEGER"
-            // src={logo}
+            src={appIcon}
             onClick={() => navigate("/")}
           />
 

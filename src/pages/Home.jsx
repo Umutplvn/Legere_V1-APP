@@ -1,19 +1,25 @@
-import React from "react";
 import BlogNews from "../components/BlogNews";
-import Header from "../components/Header";
+import useDataCall from "../hooks/useDataCall";
+import { useEffect } from "react";
+import { Box } from "@mui/material";
 
 const Home = () => {
 
+const {getData}=useDataCall()
 
+useEffect(() => {
+  getData("blogs")
+  
+}, [])
 
   
   return (
 
 
-    <div>
+    <Box>
 
       <BlogNews />
-    </div>
+    </Box>
   );
 };
 

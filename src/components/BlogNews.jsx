@@ -4,25 +4,40 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { btnLead } from "../styles/globalStyles";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const BlogNews = () => {
+  const {blogs}=useSelector((state)=>state?.blogs)
+  const navigate = useNavigate()
+
+  
+
   return (
-    <Grid container sx={{ backgroundColor: "#BCDEE6" }}>
-      <Grid item xs={10} sm={6} md={4} sx={{ margin: "auto" }}>
+    <Box container sx={{ backgroundColor: "#BCDEE6", height:"100vh"}}>
+
+ 
+    <Grid container justifyContent="center" m={0}>
+    {blogs.map((item)=> 
+    
+<Grid key={item.id} item xs={12} sm={4} md={3} sx={{ minWidth: "320px", height:"450px", margin:"2rem 3rem" }}>
+
         <Paper
           elevation={3}
-          variant="outlined"
           sx={{
-            minWidth: "320px",
+            // maxWidth:"600px",
             color: "black",
             "&:hover": { backgroundColor: "#eefaee" },
             transition: "0.3s",
             backgroundColor: "white",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"space-between"
           }}
         >
-          <Box padding={"0.5rem"} textAlign={"center"}>
+          <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
             <img
-              src="https://play-lh.googleusercontent.com/mLvvgUXJVZeu-GbqWZfr8ug74V7d8Od9yU2AOvUUptiki9wIH-BJHataFTJI_J0TlQ"
+              src={item.image}
               width={"150px"}
               style={{ borderRadius: "1rem" }}
             />
@@ -34,16 +49,15 @@ const BlogNews = () => {
             fontWeight={"600"}
             sx={{ textAlign: "center" }}
           >
-            React
+            {item.title}
           </Typography>
 
           {/* Content Text */}
           <Box padding={"0.5rem"}>
             <Typography height={"80px"} overflow={"scroll"}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
-              lorem
+              {item.content}
             </Typography>
-            <Typography>29/04/23 15.50</Typography>
+            <Typography sx={{mt:"15px"}}>{(item.publish_date)}</Typography>
           </Box>
           {/* Content User Info */}
           <Box
@@ -55,7 +69,7 @@ const BlogNews = () => {
             <Avatar>
               <AccountCircleIcon />
             </Avatar>
-            <Typography>User Name</Typography>
+            <Typography>{item.author}</Typography>
           </Box>
 
           {/* Content Buttons and Values Info/ Read More */}
@@ -67,24 +81,32 @@ const BlogNews = () => {
             <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
               <Box display={"flex"}>
                 <FavoriteIcon sx={{ cursor: "pointer" }} />
-                <Typography>2</Typography>
+                <Typography>{item.likes}</Typography>
               </Box>
               <Box display={"flex"}>
                 <ChatBubbleIcon sx={{ cursor: "pointer" }} />
-                <Typography>2</Typography>
+                <Typography>{item.comment_count}</Typography>
               </Box>
               <Box display={"flex"}>
                 <RemoveRedEyeIcon sx={{ cursor: "pointer" }} />
-                <Typography>2</Typography>
+                <Typography>{item.post_views}</Typography>
               </Box>
             </Box>
             <Box>
-              <Button sx={btnLead}>Read More</Button>
+              <Button sx={btnLead} onClick={()=>navigate(`/detail/${item.id}`)}>Read More</Button>
             </Box>
           </Box>
         </Paper>
+
+        
       </Grid>
+    )}
+
+
+   
+      
     </Grid>
+    </Box>
   );
 };
 
