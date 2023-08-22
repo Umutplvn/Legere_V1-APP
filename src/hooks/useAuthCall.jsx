@@ -24,13 +24,11 @@ const useAuthCall = () => {
         
     } catch (error) {
       dispatch(fetchFail());
-      console.log(error);
     }
   };
 
   const register = async (userData) => {
     dispatch(fetchStart);
-    console.log("register");
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_BASE_URL}users/register/`,
@@ -40,10 +38,26 @@ const useAuthCall = () => {
       navigate("/")
     } catch (error) {
       dispatch(fetchFail());
-      console.log(error);
     }
   };
-  return { login, register };
+
+  const logout = async () => {
+    dispatch(fetchStart);
+    try {
+   await axios.post(`${process.env.REACT_APP_BASE_URL}users/auth/logout/`);
+      dispatch(logoutSuccess());
+      navigate("/login")
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+
+
+
+
+
+  return { login, register, logout };
 };
 
 export default useAuthCall

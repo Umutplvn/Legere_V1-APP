@@ -19,9 +19,11 @@ import { Container, Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const AuthForm = () => {
   const { login } = useAuthCall();
+  const navigate = useNavigate()
   const [visible, setVisible] = useState(true);
   const setPass = () => {
     setVisible(!visible);
@@ -46,6 +48,7 @@ const AuthForm = () => {
       .min(2, "Username must at least 2 characters")
       .required("This field is required"),
   });
+
 
   return (
     <Box component={"div"} sx={loginStyle}>
@@ -160,7 +163,7 @@ const AuthForm = () => {
             </Box>
           )}
         </Formik>
-
+<Typography onClick={()=>navigate("/register")} sx={{cursor:"pointer", "&:hover":{color:"red"} }}>Don't you have an account?</Typography>
         <Box sx={flexBoxRow}>
           <GitHubIcon sx={icon} />
           <FacebookIcon sx={icon} />

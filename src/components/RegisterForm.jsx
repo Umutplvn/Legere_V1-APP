@@ -19,6 +19,7 @@ import { Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const AuthForm = () => {
   const { register } = useAuthCall();
@@ -26,6 +27,7 @@ const AuthForm = () => {
   const setPass = () => {
     setVisible(!visible);
   };
+  const navigate=useNavigate()
 
   let loginScheme = object({
     email: string()
@@ -246,6 +248,7 @@ const AuthForm = () => {
           </Form>
         )}
       </Formik>
+      <Typography onClick={()=>navigate("/login")} sx={{cursor:"pointer", "&:hover":{color:"red"} }}>Do you have an account?</Typography>
 
       <Box sx={flexBoxRow}>
         <GitHubIcon sx={icon} />
