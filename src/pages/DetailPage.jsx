@@ -7,7 +7,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { btnLead } from "../styles/globalStyles";
 import CommentBlock from '../components/CommentBlock';
 
 const DetailPage = () => {
@@ -16,10 +15,12 @@ const DetailPage = () => {
     const navigate=useNavigate()
     const veri= blogs.filter((data)=>data.id==id)
     const [comment, setComment]=useState(false)
- 
-console.log("comment",comment);
+  
+
+
   return (
-    <>
+    <Box backgroundColor="#BCDEE6" height={"100vh"} alignItems={"center"} display={"flex"} flexDirection={"column"}> 
+    <Box  mt={"40px"} >
   
 {veri.map((item)=>  
 
@@ -27,13 +28,12 @@ console.log("comment",comment);
 <Paper
 key={item.id}
 elevation={3}
+
 sx={{
   maxWidth:"600px",
-  m:"3rem auto",
+  m:"auto",
   color: "black",
-  "&:hover": { backgroundColor: "#eefaee" },
-  transition: "0.3s",
-  backgroundColor: "white",
+  backgroundColor: "#eef8fa",
   display:"flex",
   flexDirection:"column",
   justifyContent:"space-between"
@@ -43,9 +43,9 @@ sx={{
 <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
   <img
     src={item.image}
-    width={"150px"}
-    style={{ borderRadius: "1rem" }}
-  />
+    width={"250px"}
+    style={{ borderRadius: "1rem", aspectRatio:"4/3", objectFit:"contain"}}
+    />
 </Box>
 
 <Typography
@@ -59,7 +59,7 @@ sx={{
 
 {/* Content Text */}
 <Box padding={"0.5rem"}>
-  <Typography height={"80px"} overflow={"scroll"}>
+  <Typography  m={"2rem 0"}>
     {item.content}
   </Typography>
   <Typography sx={{mt:"15px"}}>{(item.publish_date)}</Typography>
@@ -85,7 +85,7 @@ sx={{
 >
   <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
     <Box display={"flex"}>
-      <FavoriteIcon sx={{ cursor: "pointer" }} />
+      <FavoriteIcon sx={{ cursor: "pointer" }}/>
       <Typography>{item.likes}</Typography>
     </Box>
     <Box display={"flex"} onClick={()=> setComment(!comment)}>
@@ -99,13 +99,15 @@ sx={{
   </Box>
 </Box>
 
+{comment && <CommentBlock/>}
 </Paper>     
 
 )}
 
-{comment ? <CommentBlock/> : <Typography>"asadasd"</Typography>}
     
-</>
+</Box>
+
+</Box>
        
 
 )

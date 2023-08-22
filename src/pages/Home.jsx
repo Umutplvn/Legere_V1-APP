@@ -9,14 +9,13 @@ const {getData}=useDataCall()
 
 useEffect(() => {
   getData("blogs")
-  
 }, [])
 
   
   return (
 
 
-    <Box>
+    <Box sx={{ backgroundColor: "#BCDEE6", height:"100%", padding:"1rem"}}>
 
       <BlogNews />
     </Box>

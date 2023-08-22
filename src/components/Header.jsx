@@ -53,7 +53,6 @@ const Header = () => {
     navigate(url)
   }
 
-  console.log("currentUser", currentUser);
   const options = [
     {
       id: 1,

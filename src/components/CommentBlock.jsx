@@ -1,8 +1,9 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
 const CommentBlock = () => {
   return (
-    <div>CommentBlock</div>
+    <Box >CommentBlock</Box>
   )
 }
 

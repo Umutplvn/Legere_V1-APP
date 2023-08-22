@@ -6,28 +6,36 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { btnLead } from "../styles/globalStyles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import useDataCall from "../hooks/useDataCall";
+
 
 const BlogNews = () => {
-  const {blogs}=useSelector((state)=>state?.blogs)
+  const {blogs, likes}=useSelector((state)=>state?.blogs)
   const navigate = useNavigate()
+const {postData}=useDataCall()
+  const {getData}=useDataCall()
 
-  
+const handleLikes=(data)=>{
+  postData(`likes/${data}/`)
+  getData("blogs")
+}
 
+
+console.log("blogs",blogs);
   return (
-    <Box container sx={{ backgroundColor: "#BCDEE6", height:"100vh"}}>
+    <Box container height={"100vh"} >
 
  
-    <Grid container justifyContent="center" m={0}>
+    <Grid container  >
     {blogs.map((item)=> 
     
-<Grid key={item.id} item xs={12} sm={4} md={3} sx={{ minWidth: "320px", height:"450px", margin:"2rem 3rem" }}>
+<Grid key={item.id} item xs={12} sm={4} md={3} sx={{ minWidth: "320px", height:"500px", padding:"1rem"}}>
 
         <Paper
           elevation={3}
           sx={{
-            // maxWidth:"600px",
             color: "black",
-            "&:hover": { backgroundColor: "#eefaee" },
+            "&:hover": { backgroundColor: "#eef8fa" },
             transition: "0.3s",
             backgroundColor: "white",
             display:"flex",
@@ -38,8 +46,9 @@ const BlogNews = () => {
           <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
             <img
               src={item.image}
-              width={"150px"}
-              style={{ borderRadius: "1rem" }}
+              
+              height={"180px"}
+              style={{ borderRadius: "1rem", aspectRatio:"4/3", objectFit:"contain"}}
             />
           </Box>
 
@@ -54,7 +63,8 @@ const BlogNews = () => {
 
           {/* Content Text */}
           <Box padding={"0.5rem"}>
-            <Typography height={"80px"} overflow={"scroll"}>
+            <Typography height={"80px"} textOverflow="ellipsis" sx={{overflow:"hidden", whiteSpace:"pre"
+}}>
               {item.content}
             </Typography>
             <Typography sx={{mt:"15px"}}>{(item.publish_date)}</Typography>
@@ -80,7 +90,10 @@ const BlogNews = () => {
           >
             <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
               <Box display={"flex"}>
-                <FavoriteIcon sx={{ cursor: "pointer" }} />
+                {item.likes>=1 ? <FavoriteIcon sx={{ cursor: "pointer", color:"red" }}   onClick={()=>handleLikes(item.id)}/>:
+                
+                <FavoriteIcon sx={{ cursor: "pointer", color:"black" }}   onClick={()=>handleLikes(item.id)}/>}
+
                 <Typography>{item.likes}</Typography>
               </Box>
               <Box display={"flex"}>
