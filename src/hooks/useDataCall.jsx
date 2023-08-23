@@ -39,7 +39,6 @@ const deleteData = ()=>{}
           )
 
         } catch (error) {
-          console.log(error)
           dispatch(fetchFail())
           toastErrorNotify(`You have to login first`)
         }

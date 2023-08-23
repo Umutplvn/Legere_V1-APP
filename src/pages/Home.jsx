@@ -3,9 +3,9 @@ import useDataCall from "../hooks/useDataCall";
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { homeStyle } from "../styles/globalStyles";
 
 const Home = () => {
-  const {blogs}=useSelector((state)=>state?.blogs)
 
 const {getData}=useDataCall()
 
@@ -17,7 +17,7 @@ useEffect(() => {
   return (
 
 
-    <Box sx={{ backgroundColor: "#BCDEE6", height:"100%", padding:"1rem"}}>
+    <Box sx={homeStyle}>
 
       <BlogNews />
     </Box>

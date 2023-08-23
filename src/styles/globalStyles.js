@@ -1,4 +1,6 @@
 import bgImage from "../assets/loginWallpaper.jpeg"
+import astronaut from "../assets/astronaut.jpg"
+import space from "../assets/space.jpg"
 
 
 export const flexBox = {
@@ -125,3 +127,32 @@ export const registerStyle={
   backgroundAttachment:"fixed"
   
 }
+
+export const homeStyle = {
+  backgroundImage:`url(${astronaut})`,
+  height:"100vh", 
+  backgroundPosition:"center",
+  backgroundSize:"cover",
+  backgroundAttachment:"fixed"
+}
+
+export const detailPageStyle = {
+  backgroundImage:`url(${space})`,
+  m:"auto",
+  height:"100vh",
+  alignItems:"center",
+  display:"flex",
+  flexDirection:"column"
+}
+
+export const emojiStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};

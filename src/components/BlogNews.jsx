@@ -20,7 +20,7 @@ const BlogNews = () => {
   };
 
   return (
-    <Box container height={"100vh"}>
+    <Box container height={"100%"}>
       <Grid container>
         {blogs.map((item) => (
           <Grid
@@ -29,7 +29,7 @@ const BlogNews = () => {
             xs={12}
             sm={4}
             md={3}
-            sx={{ minWidth: "320px", height: "500px", padding: "1rem" }}
+            sx={{ minWidth: "320px", height: "500px", padding: "1rem", m:"auto" }}
           >
             <Paper
               elevation={3}
