@@ -8,6 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CommentBlock from '../components/CommentBlock';
+import useDataCall from '../hooks/useDataCall';
 
 const DetailPage = () => {
     const {blogs}=useSelector((state)=>state?.blogs)
@@ -15,7 +16,12 @@ const DetailPage = () => {
     const navigate=useNavigate()
     const veri= blogs.filter((data)=>data.id==id)
     const [comment, setComment]=useState(false)
-  
+    const { getDataLikes, getData } = useDataCall();
+
+    const handleLikes = (id) => {
+      getDataLikes(`likes/${id}/`);
+      getData("blogs");
+    };
 
 
   return (
@@ -84,18 +90,30 @@ sx={{
   alignItems={"center"}
 >
   <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
-    <Box display={"flex"}>
-      <FavoriteIcon sx={{ cursor: "pointer" }}/>
-      <Typography>{item.likes}</Typography>
-    </Box>
-    <Box display={"flex"} onClick={()=> setComment(!comment)}>
-      <ChatBubbleIcon  sx={{ cursor: "pointer" }} />
-      <Typography >{item.comment_count}</Typography>
-    </Box>
+  <Box display={"flex"}>
+                    {item.likes >= 1 ? (
+                      <FavoriteIcon
+                        sx={{ cursor: "pointer", color: "red" }}
+                        onClick={() => handleLikes(item.id)}
+                      />
+                    ) : (
+                      <FavoriteIcon
+                        sx={{ cursor: "pointer", color: "black" }}
+                        onClick={() => handleLikes(item.id)}
+                      />
+                    )}
+
+                    <Typography>{item.likes}</Typography>
+                  </Box>
     <Box display={"flex"}>
       <RemoveRedEyeIcon sx={{ cursor: "pointer" }} />
       <Typography>{item.post_views}</Typography>
+
     </Box>
+    <Box display={"flex"}>
+                    <ChatBubbleIcon onClick={()=>setComment(!comment)} sx={{ cursor: "pointer" }} />
+                    <Typography>{item.comment_count}</Typography>
+                  </Box>
   </Box>
 </Box>
 

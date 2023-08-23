@@ -1,6 +1,7 @@
 import useAxios from "./useAxios"
-import { getDataSuccess, fetchStart, fetchFail, getLikeSuccess } from "../features/blogDataSlice"
+import { getDataSuccess, fetchStart, fetchFail, getDataLikeSuccess } from "../features/blogDataSlice"
 import { useDispatch } from "react-redux"
+import {toastErrorNotify} from "../helper/ToastNotify"
 
 const useDataCall = () => {
 
@@ -16,33 +17,43 @@ const getData = async (url)=>{
         
     } catch (error) {
         dispatch(fetchFail())
-        console.log(error);
+        toastErrorNotify(error)
     }
 }
 
-const postData = async(url) => {
-    dispatch(fetchStart())
-    try {
-      const{data}= await axiosWithToken.post(url) 
-      dispatch(getLikeSuccess(data))
-      console.log("data",data);
+const postData = async(url) => {}
 
-    } catch (error) {
-        console.log(error);
-    }
-}
+const deleteData = ()=>{}
 
 
+    const getDataLikes = async (id) => {
+        dispatch(fetchStart())
+        try {
+          const [likes, blogs] = await Promise.all([
+            axiosWithToken.post(`${id}`),
+            axiosWithToken("blogs/"),
+          ])
+    console.log("likes",likes, 'blog', blogs);
+          dispatch(
+            getDataLikeSuccess([likes?.data, blogs?.data])
+          )
+
+        } catch (error) {
+          console.log(error)
+          dispatch(fetchFail())
+          toastErrorNotify(`You have to login first`)
+        }
+      }
 
 
-const deleteData = ()=>{
-
-}
 
 
 
 
-  return {getData, postData, deleteData}
+
+
+
+  return {getData, deleteData, getDataLikes}
 }
 
 export default useDataCall
