@@ -6,25 +6,32 @@ import { useSelector } from "react-redux";
 import Comments from "./Comments";
 const CommentBlock = ({ id }) => {
   const [text, setText] = useState();
-  const { getData, postData } = useDataCall();
+  const { getData, postData} = useDataCall();
   const { blogs } = useSelector((state) => state);
   const info = { post: id, content: text };
-
-  // console.log(comments);
-
   const blogComment = blogs.blogs.filter((item) => item.id == id);
   const yorum = blogComment[0].comments;
 
-  console.log(yorum);
-
 
   useEffect(() => {
-    getData("blogs");
+  getData("blogs");
   }, []);
 
   const handleComment = () => {
     postData("comments", id, info);
+    setText("")
+    getData("blogs")
   };
+
+const locale = 'en-US';
+
+const options = {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+};
+
 
   return (
 
@@ -67,13 +74,17 @@ const CommentBlock = ({ id }) => {
     </Box>
 
     {yorum?.map((item) => 
+    <>
 <Box sx={{ backgroundColor:"#ffffffec", padding:"1rem"}} gap={2} display={"flex"} justifyContent={"s"}>
   <Avatar>{item.user.substring(0,1)}</Avatar>      
 <Box display={"flex"} flexDirection={"column"} gap={1} width={"100%"}>
 <Typography>{item.content}</Typography>
-  <Typography textAlign={"end"} sx={{textAlign:"end"}}>{item.time_stamp}</Typography>
+  <Typography textAlign={"end"} sx={{textAlign:"end"}}>{
+  item.time_stamp}</Typography>
 </Box>
 </Box>
+<hr />
+</>
  )}
 
     </>

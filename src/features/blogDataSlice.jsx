@@ -36,8 +36,10 @@ const blogDataSlice = createSlice({
       state.likes=payload[0]
       state.blogs=payload[1]
       state.comments=payload[2]
-    }
-  
+    },
+
+
+
   }
 }
 )

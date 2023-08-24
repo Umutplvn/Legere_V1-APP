@@ -5,6 +5,7 @@ import {
   fetchFail,
   getDataLikeSuccess,
   postDataSuccess,
+  
 } from "../features/blogDataSlice";
 import { useDispatch } from "react-redux";
 import { toastErrorNotify } from "../helper/ToastNotify";
@@ -32,10 +33,13 @@ const useDataCall = () => {
       dispatch(postDataSuccess({ url, data }));
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify(error);
+      toastErrorNotify(error.response.data.detail);
       console.log(error);
     }
   };
+
+
+
   
 
   const deleteData = () => {};
@@ -54,7 +58,11 @@ const useDataCall = () => {
     }
   };
 
-  return { getData, deleteData, getDataLikes, postData };
+
+ 
+
+
+  return { getData, deleteData, getDataLikes, postData};
 };
 
 export default useDataCall;
