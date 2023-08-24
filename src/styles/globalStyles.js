@@ -58,7 +58,7 @@ export const loginStyle={
   backgroundSize:"cover",
   height:"100vh",
   width:"100vw",
-  backgroundAttachment:"fixed"
+  backgroundAttachment:"fixed",
   
 
 }
@@ -129,20 +129,30 @@ export const registerStyle={
 }
 
 export const homeStyle = {
-  backgroundImage:`url(${astronaut})`,
-  height:"100vh", 
-  backgroundPosition:"center",
-  backgroundSize:"cover",
-  backgroundAttachment:"fixed"
+  // backgroundImage:`url(${astronaut})`,
+  backgroundColor:"white",
+  width:"100%",
+  height:"100%",
+  backgroundPosition:"cover",
+  paddingBottom:"4rem",
+  backgroundAttachment:"fixed",
+
+
+
+    
 }
 
 export const detailPageStyle = {
-  backgroundImage:`url(${space})`,
+  // backgroundImage:`url(${space})`,
+  backgroundColor:"white",
   m:"auto",
-  height:"100vh",
   alignItems:"center",
+  height:"100vh",
   display:"flex",
-  flexDirection:"column"
+  flexDirection:"column",
+  backgroundAttachment:"fixed",
+
+
 }
 
 export const emojiStyle = {

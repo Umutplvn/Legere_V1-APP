@@ -1,58 +1,60 @@
-import useAxios from "./useAxios"
-import { getDataSuccess, fetchStart, fetchFail, getDataLikeSuccess } from "../features/blogDataSlice"
-import { useDispatch } from "react-redux"
-import {toastErrorNotify} from "../helper/ToastNotify"
+import useAxios from "./useAxios";
+import {
+  getDataSuccess,
+  fetchStart,
+  fetchFail,
+  getDataLikeSuccess,
+  postDataSuccess,
+} from "../features/blogDataSlice";
+import { useDispatch } from "react-redux";
+import { toastErrorNotify } from "../helper/ToastNotify";
 
 const useDataCall = () => {
+  const { axiosPublic, axiosWithToken } = useAxios();
+  const dispatch = useDispatch();
 
-const {axiosPublic, axiosWithToken} =useAxios()
-const dispatch=useDispatch()
-
-
-const getData = async (url)=>{
-    dispatch(fetchStart)
+  const getData = async (url) => {
+    dispatch(fetchStart());
     try {
-        const {data} =await axiosPublic(`${url}/`)
-        dispatch(getDataSuccess({url, data}))
-        
+      const { data } = await axiosPublic(`${url}/`);
+      dispatch(getDataSuccess({ url, data }));
     } catch (error) {
-        dispatch(fetchFail())
-        toastErrorNotify(error)
+      dispatch(fetchFail());
+      toastErrorNotify(error);
     }
-}
-
-const postData = async(url) => {}
-
-const deleteData = ()=>{}
+  };
 
 
-    const getDataLikes = async (id) => {
-        dispatch(fetchStart())
-        try {
-          const [likes, blogs] = await Promise.all([
-            axiosWithToken.post(`${id}`),
-            axiosWithToken("blogs/"),
-          ])
-    console.log("likes",likes, 'blog', blogs);
-          dispatch(
-            getDataLikeSuccess([likes?.data, blogs?.data])
-          )
+  const postData = async (url, id, info) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.post(`${url}/${id}/`, info);
+      dispatch(postDataSuccess({ url, data }));
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify(error);
+      console.log(error);
+    }
+  };
+  
 
-        } catch (error) {
-          dispatch(fetchFail())
-          toastErrorNotify(`You have to login first`)
-        }
-      }
+  const deleteData = () => {};
 
+  const getDataLikes = async (id) => {
+    dispatch(fetchStart());
+    try {
+      const [likes, blogs] = await Promise.all([
+        axiosWithToken.post(`${id}`),
+        axiosWithToken("blogs/"),
+      ]);
+      dispatch(getDataLikeSuccess([likes?.data, blogs?.data]));
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify(`You have to login first`);
+    }
+  };
 
+  return { getData, deleteData, getDataLikes, postData };
+};
 
-
-
-
-
-
-
-  return {getData, deleteData, getDataLikes}
-}
-
-export default useDataCall
+export default useDataCall;

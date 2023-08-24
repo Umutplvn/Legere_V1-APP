@@ -124,7 +124,7 @@ const DetailPage = () => {
               </Box>
             </Box>
 
-            {comment && <CommentBlock />}
+            {comment && <CommentBlock id={item.id}/>}
           </Paper>
         ))}
       </Box>

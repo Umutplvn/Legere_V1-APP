@@ -3,7 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { btnLead } from "../styles/globalStyles";
+import { btnLead, homeStyle } from "../styles/globalStyles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useDataCall from "../hooks/useDataCall";
@@ -20,8 +20,8 @@ const BlogNews = () => {
   };
 
   return (
-    <Box container height={"100%"}>
-      <Grid container>
+    <Box container  height={"100%"} >
+      <Grid container >
         {blogs.map((item) => (
           <Grid
             key={item.id}

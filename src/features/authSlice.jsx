@@ -11,6 +11,7 @@ export const authSlice = createSlice({
     currentUser:null,
     token:null,
     id:null,
+    
   },
 
 

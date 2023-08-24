@@ -17,10 +17,10 @@ useEffect(() => {
   return (
 
 
-    <Box sx={homeStyle}>
+    <div style={homeStyle} >
 
       <BlogNews />
-    </Box>
+    </div>
   );
 };
 
