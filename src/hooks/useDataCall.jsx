@@ -29,7 +29,7 @@ const useDataCall = () => {
   const postData = async (url, id, info) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.post(`${url}/${id}/`, info);
+      const { data } = await axiosWithToken.post(`${url}/${id}`, info);
       dispatch(postDataSuccess({ url, data }));
     } catch (error) {
       dispatch(fetchFail());

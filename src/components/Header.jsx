@@ -19,7 +19,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useSelector } from "react-redux";
 import appIcon from "../assets/appIcon.jpg"
-
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -222,6 +222,10 @@ const Header = () => {
                 <MenuItem onClick={()=>logout()}>
                   <Icon><LogoutIcon/></Icon>
                   <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+                <MenuItem onClick={()=>navigate("/profile")}>
+                  <Icon><AccountBoxIcon/></Icon>
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
               </Menu>
             ) 

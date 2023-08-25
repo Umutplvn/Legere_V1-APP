@@ -18,7 +18,7 @@ const CommentBlock = ({ id }) => {
   }, []);
 
   const handleComment = () => {
-    postData("comments", id, info);
+    postData("comments", `${id}/`, info);
     setText("")
     getData("blogs")
   };
