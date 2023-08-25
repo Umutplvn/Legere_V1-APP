@@ -38,7 +38,7 @@ const NewBlog = ({SetDraftArr}) => {
        let draft ={...category}
         arr.push({...draft})
         SetDraftArr(arr);
-        
+        console.log(arr);
         setCategory( {title: "",
         content: "",
         image: "",
@@ -103,7 +103,6 @@ const NewBlog = ({SetDraftArr}) => {
             sx={{
               padding: "1rem",
               borderTop: "solid #aaaaaa",
-              borderRadius: "1rem",
             }}
           />
 

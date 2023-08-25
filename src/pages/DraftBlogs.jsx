@@ -4,16 +4,33 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import useDataCall from "../hooks/useDataCall";
 import { useNavigate } from "react-router";
 import DraftBlogModal from "../components/DraftBlogModal";
+import { useSelector } from "react-redux";
 
-const DraftBlogs = ({draftArr}) => {
+const DraftBlogs = ({draftArr, setDraftArr}) => {
   const {postData}=useDataCall()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+const navigate=useNavigate()
 
+
+
+
+const publish=()=>{
+
+    
+    
+}
 
   return (
     <Box container  height={"100%"} >
+
+{draftArr.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
+<Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem", cursor:"pointer", "&:hover":{  color:"red"}  }} onClick={()=> navigate("/new-blog")}>Let's have one!</Typography>
+</>
+
+:
+
       <Grid container >
         {draftArr.map((item) => (
           <Grid
@@ -77,16 +94,18 @@ const DraftBlogs = ({draftArr}) => {
                 <Avatar>
                   <AccountCircleIcon />
                 </Avatar>
-                <Button onClick={()=>postData("blogs","", item)}>Publish</Button>
+                <Button onClick={publish}>Publish</Button>
                 <Button onClick={handleOpen}>Edit</Button>
 
-<DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open}/>
+<DraftBlogModal draftArr={draftArr} handleOpen={handleOpen} handleClose={handleClose} open={open} />
 
               </Box>
             </Paper>
           </Grid>
         ))}
       </Grid>
+
+}
     </Box>
   );
 };
