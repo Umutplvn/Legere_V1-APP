@@ -7,11 +7,15 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const NewBlog = () => {
+const NewBlog = ({SetDraftArr}) => {
   const { getData, postData } = useDataCall();
   const { categories } = useSelector((state) => state.blogs);
   const status = [{name:"Public", letter:"p"},{name:"Draft", letter:"d"}]
-  const [category, setCategory] = useState({
+
+
+  let arr=[]
+
+  let [category, setCategory] = useState({
     title: "",
     content: "",
     image: "",
@@ -20,7 +24,31 @@ const NewBlog = () => {
     slug: "",
   });
 
-  console.log(category);
+
+  const blogPost = ()=>{
+    if(category.status=="p"){
+       postData("blogs","",category)
+       setCategory( {title: "",
+       content: "",
+       image: "",
+       category: "",
+       status: "",
+       slug: ""})
+    }else{
+       let draft ={...category}
+        arr.push({...draft})
+        SetDraftArr(arr);
+        
+        setCategory( {title: "",
+        content: "",
+        image: "",
+        category: "",
+        status: "",
+        slug: ""})
+    }
+  }
+
+
 
 
   useEffect(() => {
@@ -51,10 +79,12 @@ const NewBlog = () => {
             placeholder="Title"
             sx={{ padding: "1rem", borderRadius: "1rem" }}
             name="title"
+            value={category.title}
           />
           <TextField
             onChange={handleChange}
             placeholder="Content"
+            value={category.content}
             sx={{
               height: "200px",
               borderRadius: "1rem",
@@ -69,6 +99,7 @@ const NewBlog = () => {
             name="image"
             variant="standart"
             placeholder="Image URL"
+            value={category.image}
             sx={{
               padding: "1rem",
               borderTop: "solid #aaaaaa",
@@ -107,7 +138,8 @@ const NewBlog = () => {
              )}
             </Select>
           </FormControl>
-          <Button onClick={()=>postData("blogs","",category)}>Submit</Button>
+          <Button onClick={blogPost}>Submit</Button>
+
           </FormControl>
 
         </Paper>

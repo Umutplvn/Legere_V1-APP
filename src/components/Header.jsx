@@ -20,6 +20,7 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { useSelector } from "react-redux";
 import appIcon from "../assets/appIcon.jpg"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import DrawIcon from '@mui/icons-material/Draw';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -101,11 +102,11 @@ const Header = () => {
             src={appIcon}
             onClick={() => navigate("/")}
           />
-          <Typography
+          <Button
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -114,10 +115,11 @@ const Header = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor:"pointer"
             }}
           >
             LEGERE
-          </Typography>
+          </Button>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -169,7 +171,7 @@ const Header = () => {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -179,6 +181,7 @@ const Header = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor:"pointer"
             }}
           >
             LEGERE
@@ -227,6 +230,11 @@ const Header = () => {
                   <Icon><AccountBoxIcon/></Icon>
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
+                <MenuItem onClick={()=>navigate("/drafts")}>
+                  <Icon><DrawIcon/></Icon>
+                  <Typography textAlign="center">Draft Blogs</Typography>
+                </MenuItem>
+                
               </Menu>
             ) 
             : 
