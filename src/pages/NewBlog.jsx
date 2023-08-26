@@ -17,13 +17,11 @@ import cloneDeep from "lodash/cloneDeep";
 const NewBlog = () => {
   const { getData, postData } = useDataCall();
   const { categories } = useSelector((state) => state.blogs);
-  const [count, setCount] = useState(-1);
 
   const status = [
     { name: "Public", letter: "p" },
     { name: "Draft", letter: "d" },
   ];
-  const { draft } = useSelector((state) => state.blogs);
 
   let [category, setCategory] = useState({
     title: "",
@@ -37,6 +35,7 @@ const NewBlog = () => {
   const blogPost = () => {
     if (category.status == "p") {
       postData("blogs", "", category);
+      getData("blogs")
       category = {
         title: "",
         content: "",
@@ -52,7 +51,14 @@ const NewBlog = () => {
       newArr = oldArr;
       newArr.push(newObj);
       localStorage.setItem("newArr", JSON.stringify(newArr));
-      console.log(newArr);
+      category = {
+        title: "",
+        content: "",
+        image: "",
+        category: "",
+        status: "",
+        slug: "",
+      };
     }
   };
 
@@ -128,8 +134,8 @@ const NewBlog = () => {
                 value={category.category}
                 name="category"
               >
-                {categories.map((item) => (
-                  <MenuItem value={Number(item.id)}>{item.name}</MenuItem>
+                {categories.map((item, index) => (
+                  <MenuItem key={index} value={Number(item.id)}>{item.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -146,8 +152,8 @@ const NewBlog = () => {
                 onChange={handleChange}
                 value={category.status}
               >
-                {status.map((item) => (
-                  <MenuItem value={item.letter}>{item.name}</MenuItem>
+                {status.map((item, index) => (
+                  <MenuItem key={index} value={item.letter}>{item.name}</MenuItem>
                 ))}
               </Select>
             </FormControl>

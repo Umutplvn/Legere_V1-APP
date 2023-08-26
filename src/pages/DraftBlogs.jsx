@@ -1,28 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import useDataCall from "../hooks/useDataCall";
 import { useNavigate } from "react-router";
 import DraftBlogModal from "../components/DraftBlogModal";
-import { useSelector } from "react-redux";
 
-const DraftBlogs = ({draftArr, setDraftArr}) => {
-  const {postData}=useDataCall()
+const DraftBlogs = () => {
+  const {postData, getData}=useDataCall()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 const navigate=useNavigate()
 
 
-  const newData= JSON.parse(localStorage.getItem("newArr"))
-  console.log(newData);
+const [newData, setNewData]= useState(JSON.parse(localStorage.getItem("newArr")))
 
 
-console.log(newData);
-
-const publish=()=>{
-        
-}
+const postDraft=(item, index)=>{
+    item.status="p"
+    postData("blogs", "", item)
+    const erase = newData.filter((item)=>item !== newData[index])
+    localStorage.setItem("newArr", JSON.stringify(erase))
+    setNewData(erase)
+    getData("blogs")
+  }
 
   return (
     <Box container  height={"100%"} >
@@ -34,9 +35,10 @@ const publish=()=>{
 :
 
       <Grid container >
-        {newData.map((item) => (
+        {newData.map((item, index) => (
           <Grid
             item
+            key={index}
             xs={12}
             sm={4}
             md={3}
@@ -56,6 +58,7 @@ const publish=()=>{
             >
               <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
                 <img
+                alt={item.title}
                   src={item.image}
                   height={"180px"}
                   style={{
@@ -96,7 +99,7 @@ const publish=()=>{
                 <Avatar>
                   <AccountCircleIcon />
                 </Avatar>
-                <Button onClick={publish}>Publish</Button>
+                <Button onClick={()=>postDraft(item, index)}>Publish</Button>
                 <Button onClick={handleOpen}>Edit</Button>
 
 <DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open} />

@@ -8,7 +8,6 @@ import About from "../pages/About";
 import DetailPage from "../pages/DetailPage";
 import NewBlog from "../pages/NewBlog";
 import DraftBlogs from "../pages/DraftBlogs";
-import { useState } from "react";
 import PrivateRouter from "../pages/PrivateRouter";
 
 const Approuter = () => {

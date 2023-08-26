@@ -3,7 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { btnLead, homeStyle } from "../styles/globalStyles";
+import { btnLead } from "../styles/globalStyles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useDataCall from "../hooks/useDataCall";
@@ -18,6 +18,7 @@ const BlogNews = () => {
     getDataLikes(`likes/${id}/`);
     getData("blogs");
   };
+
 
   return (
     <Box container  height={"100%"} >
@@ -45,6 +46,7 @@ const BlogNews = () => {
             >
               <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
                 <img
+                alt={item.title}
                   src={item.image}
                   height={"180px"}
                   style={{
