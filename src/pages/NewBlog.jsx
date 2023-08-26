@@ -19,10 +19,9 @@ const NewBlog = () => {
   const { categories } = useSelector((state) => state.blogs);
 
   const status = [
-    { name: "Public", letter: "p" },
+    { name: "Publish", letter: "p" },
     { name: "Draft", letter: "d" },
   ];
-
   let [category, setCategory] = useState({
     title: "",
     content: "",
@@ -36,14 +35,14 @@ const NewBlog = () => {
     if (category.status == "p") {
       postData("blogs", "", category);
       getData("blogs")
-      category = {
+      setCategory ({
         title: "",
         content: "",
         image: "",
         category: "",
         status: "",
         slug: "",
-      };
+      });
     } else {
       let newObj = cloneDeep(category);
       let newArr = [];
@@ -51,16 +50,17 @@ const NewBlog = () => {
       newArr = oldArr;
       newArr.push(newObj);
       localStorage.setItem("newArr", JSON.stringify(newArr));
-      category = {
+      setCategory ({
         title: "",
         content: "",
         image: "",
         category: "",
         status: "",
         slug: "",
-      };
+      });
     }
   };
+
 
 
   useEffect(() => {
@@ -69,6 +69,7 @@ const NewBlog = () => {
 
   const handleChange = (e) => {
     setCategory({ ...category, [e.target.name]: e.target.value });
+
   };
 
   return (

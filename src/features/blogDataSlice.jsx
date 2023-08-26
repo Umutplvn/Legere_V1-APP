@@ -27,6 +27,8 @@ const blogDataSlice = createSlice({
     },
 
     postDataSuccess: (state, {payload}) => {
+      state.loading = false;
+      state.error = true;
       state[payload.url]= payload.data;
     },
 

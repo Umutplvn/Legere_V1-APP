@@ -19,7 +19,6 @@ const BlogNews = () => {
     getData("blogs");
   };
 
-
   return (
     <Box container  height={"100%"} >
       <Grid container >

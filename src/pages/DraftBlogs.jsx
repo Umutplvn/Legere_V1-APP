@@ -8,10 +8,25 @@ import DraftBlogModal from "../components/DraftBlogModal";
 const DraftBlogs = () => {
   const {postData, getData}=useDataCall()
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const[info, setInfo]=useState()
+
+  
+  const handleOpen = (index) => {
+    setOpen(true)
+    setInfo({
+      title: newData[index].title,
+      content: newData[index].content,
+      image: newData[index].image,
+      category: newData[index].category,
+      status: "",
+      slug: "",
+      id:index
+    })
+    
+  
+  };
   const handleClose = () => setOpen(false);
 const navigate=useNavigate()
-
 
 const [newData, setNewData]= useState(JSON.parse(localStorage.getItem("newArr")))
 
@@ -23,7 +38,11 @@ const postDraft=(item, index)=>{
     localStorage.setItem("newArr", JSON.stringify(erase))
     setNewData(erase)
     getData("blogs")
+    
   }
+
+
+
 
   return (
     <Box container  height={"100%"} >
@@ -35,7 +54,7 @@ const postDraft=(item, index)=>{
 :
 
       <Grid container >
-        {newData.map((item, index) => (
+        {newData?.map((item, index) => (
           <Grid
             item
             key={index}
@@ -58,8 +77,8 @@ const postDraft=(item, index)=>{
             >
               <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
                 <img
-                alt={item.title}
-                  src={item.image}
+                alt={item?.title}
+                  src={item?.image}
                   height={"180px"}
                   style={{
                     borderRadius: "1rem",
@@ -74,8 +93,9 @@ const postDraft=(item, index)=>{
                 variant="h5"
                 fontWeight={"600"}
                 sx={{ textAlign: "center" }}
+                
               >
-                {item.title}
+                {item?.title}
               </Typography>
 
               {/* Content Text */}
@@ -100,9 +120,9 @@ const postDraft=(item, index)=>{
                   <AccountCircleIcon />
                 </Avatar>
                 <Button onClick={()=>postDraft(item, index)}>Publish</Button>
-                <Button onClick={handleOpen}>Edit</Button>
+                <Button onClick={()=>handleOpen(index)}>Edit</Button>
 
-<DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open} />
+<DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open}  newData={newData} setNewData={setNewData} index={index} info={info} setInfo={setInfo}/>
 
               </Box>
             </Paper>

@@ -24,13 +24,14 @@ const DetailPage = () => {
     getData("blogs");
   };
 
+
   return (
 
 
     <Grid container 
    sx={detailPageStyle}
     > 
-<Grid item xs={10} sm={10} md={9}  lg={7} xl={5} m={"auto"}>
+<Grid item xs={11} sm={10} md={9}  lg={7} xl={5} m={"auto"}>
 <Box
      
     >
