@@ -5,6 +5,7 @@ import {
   fetchFail,
   getDataLikeSuccess,
   postDataSuccess,
+  postDraftSuccess
   
 } from "../features/blogDataSlice";
 import { useDispatch } from "react-redux";

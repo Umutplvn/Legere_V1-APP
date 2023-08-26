@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import useDataCall from "../hooks/useDataCall";
@@ -14,25 +14,27 @@ const DraftBlogs = ({draftArr, setDraftArr}) => {
 const navigate=useNavigate()
 
 
+  const newData= JSON.parse(localStorage.getItem("newArr"))
+  console.log(newData);
 
+
+console.log(newData);
 
 const publish=()=>{
-
-    
-    
+        
 }
 
   return (
     <Box container  height={"100%"} >
 
-{draftArr.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
+{newData.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
 <Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem", cursor:"pointer", "&:hover":{  color:"red"}  }} onClick={()=> navigate("/new-blog")}>Let's have one!</Typography>
 </>
 
 :
 
       <Grid container >
-        {draftArr.map((item) => (
+        {newData.map((item) => (
           <Grid
             item
             xs={12}
@@ -82,7 +84,7 @@ const publish=()=>{
                 >
                   {item.content}
                 </Typography>
-                <Typography sx={{ mt: "15px" }}>{item.publish_date}</Typography>
+              
               </Box>
               {/* Content User Info */}
               <Box
@@ -97,7 +99,7 @@ const publish=()=>{
                 <Button onClick={publish}>Publish</Button>
                 <Button onClick={handleOpen}>Edit</Button>
 
-<DraftBlogModal draftArr={draftArr} handleOpen={handleOpen} handleClose={handleClose} open={open} />
+<DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open} />
 
               </Box>
             </Paper>

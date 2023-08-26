@@ -12,7 +12,6 @@ import { useState } from "react";
 import PrivateRouter from "../pages/PrivateRouter";
 
 const Approuter = () => {
-  const [draftArr, SetDraftArr] = useState([]);
 
   return (
     <>
@@ -27,9 +26,9 @@ const Approuter = () => {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route
             path="/new-blog"
-            element={<NewBlog SetDraftArr={SetDraftArr} />}
+            element={<NewBlog />}
           />
-          <Route path="/drafts" element={<DraftBlogs draftArr={draftArr} />} />
+          <Route path="/drafts" element={<DraftBlogs />} />
         </Route>
       </Routes>
     </>

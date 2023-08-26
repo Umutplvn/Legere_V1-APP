@@ -20,20 +20,18 @@ const style = {
   p: 4,
 };
 
-const DraftBlogModal= ({open, handleClose, draftArr})=> {
+const DraftBlogModal= ({open, handleClose})=> {
 
     const { categories } = useSelector((state) => state.blogs);
-    const selectedCat= categories.filter((item)=>item.id== draftArr[0].category)
 
     const handleChange=()=>{
 
     }
 
-    console.log(draftArr[0]);
 
   return (
     <div>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -57,12 +55,12 @@ const DraftBlogModal= ({open, handleClose, draftArr})=> {
             placeholder="Title"
             sx={{ padding: "1rem", borderRadius: "1rem" }}
             name="title"
-            value={draftArr[0].title}
+            // value={draftArr[0].title}
           />
           <TextField
             onChange={handleChange}
             placeholder="Content"
-            value={draftArr[0].content}
+            // value={draftArr[0].content}
             sx={{
               height: "200px",
               borderRadius: "1rem",
@@ -77,7 +75,7 @@ const DraftBlogModal= ({open, handleClose, draftArr})=> {
             name="image"
             variant="standart"
             placeholder="Image URL"
-            value={draftArr[0].image}
+            // value={draftArr[0].image}
             sx={{
               padding: "1rem",
               borderTop: "solid #aaaaaa",
@@ -90,7 +88,7 @@ const DraftBlogModal= ({open, handleClose, draftArr})=> {
               labelId="category"
               id="category"
               onChange={handleChange}
-             value={selectedCat[0].name}
+            //  value={selectedCat[0].name}
               name="category"
             >
              
@@ -108,7 +106,7 @@ const DraftBlogModal= ({open, handleClose, draftArr})=> {
         </Paper>
       </Grid>
     </Grid>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
