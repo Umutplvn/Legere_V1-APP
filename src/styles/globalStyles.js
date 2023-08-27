@@ -1,6 +1,5 @@
 import bgImage from "../assets/loginWallpaper.jpeg"
-import astronaut from "../assets/astronaut.jpg"
-import space from "../assets/space.jpg"
+
 
 
 export const flexBox = {
@@ -18,7 +17,6 @@ export const flexBox = {
 
 export const flexBoxRow = {
     display: "flex",
-    
     gap: "1rem",
     color:"white",
     width: "250px",
@@ -166,3 +164,5 @@ export const emojiStyle = {
   boxShadow: 24,
   p: 4,
 };
+
+

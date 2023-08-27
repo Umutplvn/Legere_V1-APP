@@ -9,7 +9,8 @@ import {
   
 } from "../features/blogDataSlice";
 import { useDispatch } from "react-redux";
-import { toastErrorNotify } from "../helper/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { async } from "react-input-emoji";
 
 const useDataCall = () => {
   const { axiosPublic, axiosWithToken } = useAxios();
@@ -43,7 +44,17 @@ const useDataCall = () => {
 
   
 
-  const deleteData = () => {};
+  const deleteData =async (id) => {
+    dispatch(fetchStart())
+    try {
+      await axiosWithToken.delete(`blogs/${id}/`)
+    toastSuccessNotify("Successfully deleted")
+    getData("blogs")
+    } catch (error) {
+      toastErrorNotify(error)
+      dispatch(fetchFail())
+    }
+  };
 
   const getDataLikes = async (id) => {
     dispatch(fetchStart());

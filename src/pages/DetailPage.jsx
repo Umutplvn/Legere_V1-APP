@@ -9,21 +9,30 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CommentBlock from "../components/CommentBlock";
 import useDataCall from "../hooks/useDataCall";
-import { detailPageStyle, homeStyle } from "../styles/globalStyles";
+import { detailPageStyle } from "../styles/globalStyles";
+import DeleteModal from "../components/DeleteModal";
 
 const DetailPage = () => {
   const { blogs } = useSelector((state) => state?.blogs);
+  const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
   const navigate = useNavigate();
   const veri = blogs.filter((data) => data.id == id);
   const [comment, setComment] = useState(false);
   const { getDataLikes, getData } = useDataCall();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
 
   const handleLikes = (id) => {
     getDataLikes(`likes/${id}/`);
     getData("blogs");
   };
 
+
+  
 
   return (
 
@@ -124,6 +133,17 @@ const DetailPage = () => {
                 </Box>
               </Box>
             </Box>
+             { item.author == currentUser &&  
+             <>
+             <Box>
+              <Button onClick={handleOpen}>Delete</Button>
+              <Button>Update</Button>
+             </Box>
+             
+             <DeleteModal open={open} handleClose={handleClose} handleOpen={handleOpen} id={item.id}/>
+             </>
+             }
+        
 
             {comment && <CommentBlock id={item.id}/>}
           </Paper>
