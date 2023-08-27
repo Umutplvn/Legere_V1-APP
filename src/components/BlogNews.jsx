@@ -7,8 +7,12 @@ import { btnLead } from "../styles/globalStyles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useDataCall from "../hooks/useDataCall";
+import { useEffect } from "react";
 
 const BlogNews = () => {
+  useEffect(() => {
+    getData("blogs");
+  }, [])
   const { blogs } = useSelector((state) => state?.blogs);
   const navigate = useNavigate();
   const { getDataLikes } = useDataCall();
@@ -18,6 +22,9 @@ const BlogNews = () => {
     getDataLikes(`likes/${id}/`);
     getData("blogs");
   };
+
+ 
+  
 
   return (
     <Box container  height={"100%"} >

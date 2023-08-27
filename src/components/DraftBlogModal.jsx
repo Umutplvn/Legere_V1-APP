@@ -102,9 +102,7 @@ const DraftBlogModal = ({
                 />
 
                 <FormControl fullWidth >
-                  <InputLabel id="demo-simple-select-label">
-                    Category
-                  </InputLabel>
+                 
                   <Select
                     labelId="category"
                     id="category"
@@ -117,8 +115,8 @@ const DraftBlogModal = ({
                     ))}
                   </Select>
                 </FormControl>
-                <Button sx={{backgroundColor:"red", width:"25%"}} onClick={handleClose}>Cancel</Button>
-                <Button sx={{backgroundColor:"green", width:"25%"}} onClick={handleSubmit}>Public</Button>
+                <Button sx={btnRed} onClick={handleClose}>Cancel</Button>
+                <Button sx={btnGreen} onClick={handleSubmit}>Public</Button>
               </FormControl>
             </Paper>
           </Grid>

@@ -9,9 +9,12 @@ const {getData}=useDataCall()
 
 useEffect(() => {
   getData("blogs")
+  let newArr=[""]
+  localStorage.setItem("newArr", newArr)
 }, [])
 
-  
+
+
   return (
 
 

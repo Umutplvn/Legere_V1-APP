@@ -20,7 +20,6 @@ const navigate = useNavigate()
   const { categories } = useSelector((state) => state.blogs);
   const{putData, getData}=useDataCall()
   const [info, setInfo]=useState(item)
-console.log(info);
 
   const handleChange = (e) => {
     setInfo({...info, [e.target.name]:e.target.value})
@@ -28,11 +27,11 @@ console.log(info);
 
   const handleSubmit=(id)=>{ 
     putData("blogs", id, info)
-    handleUpdateClose()
     navigate("/")
+    handleUpdateClose()
+    console.log(info);
+ 
   }
-
-
 
 
   return (

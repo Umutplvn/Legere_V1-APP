@@ -58,8 +58,8 @@ const NewBlog = () => {
         status: "",
         slug: "",
       });
-    }
-  };
+    }}
+  
 
 
 
