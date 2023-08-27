@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-
 export const authSlice = createSlice({
   name: 'auth',
-
   initialState: {
     loading:false,
     error:false,
@@ -14,9 +12,6 @@ export const authSlice = createSlice({
     avatar:""
     
   },
-
-
-
 
   reducers: {
     fetchStart: (state)=> {

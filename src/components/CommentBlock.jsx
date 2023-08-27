@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import InputEmoji from "react-input-emoji";
 import useDataCall from "../hooks/useDataCall";
 import { useSelector } from "react-redux";
-import Comments from "./Comments";
+import { btnGreen, btnRed } from "../styles/globalStyles";
 const CommentBlock = ({ id }) => {
   const [text, setText] = useState();
   const { getData, postData} = useDataCall();
@@ -23,14 +23,6 @@ const CommentBlock = ({ id }) => {
     getData("blogs")
   };
 
-const locale = 'en-US';
-
-const options = {
-  weekday: 'long',
-  month: 'long',
-  day: 'numeric',
-  year: 'numeric',
-};
 
 
   return (
@@ -63,8 +55,8 @@ const options = {
               justifyContent={"end"}
               height={"2rem"}
             >
-              <Button onClick={() => setText("")}>Clear</Button>
-              <Button onClick={handleComment} type="submit">
+              <Button sx={btnRed} onClick={() => setText("")}>Clear</Button>
+              <Button sx={btnGreen} onClick={handleComment}>
                 Comment
               </Button>
             </Box>

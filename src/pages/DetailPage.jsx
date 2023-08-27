@@ -1,7 +1,7 @@
 import { Box, Grid, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Avatar, Button, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -9,9 +9,9 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CommentBlock from "../components/CommentBlock";
 import useDataCall from "../hooks/useDataCall";
-import { detailPageStyle } from "../styles/globalStyles";
+import { btnGreen, btnRed, detailPageStyle } from "../styles/globalStyles";
 import DeleteModal from "../components/DeleteModal";
-import UpdateModal from "../components/UpdataModal";
+import UpdateModal from "../components/UpdateModal";
 
 const DetailPage = () => {
   const { blogs } = useSelector((state) => state?.blogs);
@@ -139,8 +139,8 @@ const DetailPage = () => {
              { item.author == currentUser &&  
              <>
              <Box display={"flex"}  justifyContent={"center"} gap={2} m="1rem">
-              <Button  sx={{backgroundColor:"#e53935", color:"white", "&:hover":{backgroundColor:"#b71c1c"}}} onClick={handleOpen}>Delete</Button>
-              <Button sx={{backgroundColor:"green", color:"white", "&:hover":{backgroundColor:"success.dark"}}} onClick={handleUpdateOpen}>Update</Button>
+              <Button  sx={btnRed} onClick={handleOpen}>Delete</Button>
+              <Button sx={btnGreen} onClick={handleUpdateOpen}>Update</Button>
              </Box>
              
              <DeleteModal open={open} handleClose={handleClose} handleOpen={handleOpen} id={item.id}/>

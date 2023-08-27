@@ -15,7 +15,7 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
@@ -23,11 +23,9 @@ import { useNavigate } from "react-router";
 
 const AuthForm = () => {
   const { login } = useAuthCall();
-  const navigate = useNavigate()
   const [visible, setVisible] = useState(true);
-  const setPass = () => {
-    setVisible(!visible);
-  };
+  const navigate = useNavigate();
+  const setPass = () => {setVisible(!visible);};
 
   let loginScheme = object({
     email: string()
@@ -49,10 +47,9 @@ const AuthForm = () => {
       .required("This field is required"),
   });
 
-
   return (
     <Box component={"div"} sx={loginStyle}>
-      <Grid container  sx={flexContainer}>
+      <Grid container sx={flexContainer}>
         <Typography
           sx={{
             fontWeight: "700",
@@ -63,7 +60,6 @@ const AuthForm = () => {
         >
           LOGIN
         </Typography>
-        
 
         <Formik
           initialValues={{ email: "", password: "", username: "" }}
@@ -164,7 +160,12 @@ const AuthForm = () => {
             </Box>
           )}
         </Formik>
-<Typography onClick={()=>navigate("/register")} sx={{cursor:"pointer", "&:hover":{color:"red"} }}>Don't you have an account?</Typography>
+        <Typography
+          onClick={() => navigate("/register")}
+          sx={{ cursor: "pointer", "&:hover": { color: "red" } }}
+        >
+          Don't you have an account?
+        </Typography>
         <Box sx={flexBoxRow}>
           <GitHubIcon sx={icon} />
           <FacebookIcon sx={icon} />

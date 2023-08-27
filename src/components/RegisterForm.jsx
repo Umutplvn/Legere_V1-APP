@@ -4,7 +4,6 @@ import { object, string } from "yup";
 import useAuthCall from "../hooks/useAuthCall";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 import {
   btnStyle,
   flexBoxRow,
@@ -26,7 +25,7 @@ const RegisterForm = () => {
   const setPass = () => {
     setVisible(!visible);
   };
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   let loginScheme = object({
     email: string()
@@ -163,8 +162,7 @@ const RegisterForm = () => {
               </Grid>
 
               <Grid item xs={12} md={6}>
-                
-                <Box >
+                <Box>
                   {visible ? (
                     <Box
                       sx={{
@@ -191,7 +189,10 @@ const RegisterForm = () => {
                         error={touched.password && Boolean(errors.password)}
                         helperText={errors.password}
                       />
-                      <VisibilityOffIcon onClick={setPass}  sx={{width:"10%"}} />
+                      <VisibilityOffIcon
+                        onClick={setPass}
+                        sx={{ width: "10%" }}
+                      />
                     </Box>
                   ) : (
                     <Box
@@ -213,13 +214,13 @@ const RegisterForm = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         sx={{
-                          margin:"0.5rem",
+                          margin: "0.5rem",
                           width: "90%",
                         }}
                         error={touched.password && Boolean(errors.password)}
                         helperText={errors.password}
                       />
-                      <VisibilityIcon onClick={setPass} sx={{width:"10%"}} />
+                      <VisibilityIcon onClick={setPass} sx={{ width: "10%" }} />
                     </Box>
                   )}
                 </Box>
@@ -247,7 +248,12 @@ const RegisterForm = () => {
           </Form>
         )}
       </Formik>
-      <Typography onClick={()=>navigate("/login")} sx={{cursor:"pointer", "&:hover":{color:"red"} }}>Do you have an account?</Typography>
+      <Typography
+        onClick={() => navigate("/login")}
+        sx={{ cursor: "pointer", "&:hover": { color: "red" } }}
+      >
+        Do you have an account?
+      </Typography>
 
       <Box sx={flexBoxRow}>
         <GitHubIcon sx={icon} />

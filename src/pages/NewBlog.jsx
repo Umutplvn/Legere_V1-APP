@@ -158,7 +158,7 @@ const NewBlog = () => {
                 ))}
               </Select>
             </FormControl>
-            <Button type="submit" onClick={blogPost}>
+            <Button type="submit" onClick={blogPost} sx={{color:"success"}}>
               Submit
             </Button>
           </FormControl>

@@ -92,6 +92,21 @@ export const btnStyle = {
   
 };
 
+export const btnRed ={
+  backgroundColor:"#e53935", 
+  color:"white", 
+  "&:hover":{backgroundColor:"#b71c1c"}
+}
+
+export const btnGreen ={
+  backgroundColor: "green", 
+  color:"white", 
+  "&:hover":{backgroundColor:"success.dark"}
+}
+
+
+
+
 export const btnLead= {
  variant: "contained",
  m:"1rem 0.5rem",
