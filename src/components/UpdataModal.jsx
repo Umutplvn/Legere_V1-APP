@@ -7,42 +7,30 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import useDataCall from "../hooks/useDataCall";
+import { useNavigate } from "react-router";
 
 
 
-const DraftBlogModal = ({ open, handleClose, newData, setNewData,index, info, setInfo}) => {
-
+const UpdateModal = ({ updateOpen, handleUpdateClose, item}) => {
+const navigate = useNavigate()
   useEffect(() => {
     getData("categories");
   }, []);
 
   const { categories } = useSelector((state) => state.blogs);
-  const{postData, getData}=useDataCall()
- 
+  const{putData, getData}=useDataCall()
+  const [info, setInfo]=useState(item)
+console.log(info);
+
   const handleChange = (e) => {
     setInfo({...info, [e.target.name]:e.target.value})
-  };
+};
 
-  const handleSubmit=()=>{
-    info.status="p"
-    postData("blogs", "", info)
-    const erase = newData[index-1]
-    console.log("erase",erase);
-    if(erase == undefined){
-     let filtered= ""
-     console.log("filtered",filtered);
-     setNewData([]);
-      localStorage.setItem("newArr", JSON.stringify(filtered))
-    }else{
-      let filtered= newData.filter((item)=>item!==erase)
-      console.log("filtered",filtered);
-      setNewData(filtered);
-      localStorage.setItem("newArr", JSON.stringify(filtered))
-    }   
-    handleClose()
-    getData("blogs")
+  const handleSubmit=(id)=>{ 
+    putData("blogs", id, info)
+    handleUpdateClose()
+    navigate("/")
   }
-
 
 
 
@@ -50,8 +38,8 @@ const DraftBlogModal = ({ open, handleClose, newData, setNewData,index, info, se
   return (
     <div>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={updateOpen}
+        onClose={handleUpdateClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -119,8 +107,8 @@ const DraftBlogModal = ({ open, handleClose, newData, setNewData,index, info, se
                    ))}
                  </Select>
                </FormControl>
-               <Button onClick={handleClose}>Cancel</Button>
-               <Button onClick={handleSubmit}>Public</Button>
+               <Button onClick={handleUpdateClose}>Cancel</Button>
+               <Button onClick={()=>handleSubmit(item.id)}>Public</Button>
              </FormControl>
            </Paper>
    
@@ -133,4 +121,4 @@ const DraftBlogModal = ({ open, handleClose, newData, setNewData,index, info, se
   );
 };
 
-export default DraftBlogModal;
+export default UpdateModal;

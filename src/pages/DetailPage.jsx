@@ -11,19 +11,23 @@ import CommentBlock from "../components/CommentBlock";
 import useDataCall from "../hooks/useDataCall";
 import { detailPageStyle } from "../styles/globalStyles";
 import DeleteModal from "../components/DeleteModal";
+import UpdateModal from "../components/UpdataModal";
 
 const DetailPage = () => {
   const { blogs } = useSelector((state) => state?.blogs);
   const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
-  const navigate = useNavigate();
   const veri = blogs.filter((data) => data.id == id);
   const [comment, setComment] = useState(false);
   const { getDataLikes, getData } = useDataCall();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [updateOpen, setUpdateOpen]=useState(false)
   const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
+  const handleUpdateOpen =()=>setUpdateOpen(true)
+  const handleUpdateClose = () => setUpdateOpen(false);
 
+  
 
 
   const handleLikes = (id) => {
@@ -50,7 +54,6 @@ const DetailPage = () => {
             key={item.id}
             elevation={3}
             sx={{
-              maxWidth: "600px",
               m: "auto",
               color: "black",
               backgroundColor: "#eef8fa",
@@ -82,7 +85,7 @@ const DetailPage = () => {
 
             {/* Content Text */}
             <Box padding={"0.5rem"}>
-              <Typography m={"2rem 0"}>{item.content}</Typography>
+              <Typography  m={"2rem 0"}>{item.content}</Typography>
               <Typography sx={{ mt: "15px" }}>{item.publish_date}</Typography>
             </Box>
             {/* Content User Info */}
@@ -135,9 +138,9 @@ const DetailPage = () => {
             </Box>
              { item.author == currentUser &&  
              <>
-             <Box>
-              <Button onClick={handleOpen}>Delete</Button>
-              <Button>Update</Button>
+             <Box display={"flex"}  justifyContent={"center"} gap={2} m="1rem">
+              <Button  sx={{backgroundColor:"#e53935", color:"white", "&:hover":{backgroundColor:"#b71c1c"}}} onClick={handleOpen}>Delete</Button>
+              <Button sx={{backgroundColor:"green", color:"white", "&:hover":{backgroundColor:"success.dark"}}} onClick={handleUpdateOpen}>Update</Button>
              </Box>
              
              <DeleteModal open={open} handleClose={handleClose} handleOpen={handleOpen} id={item.id}/>
@@ -146,6 +149,7 @@ const DetailPage = () => {
         
 
             {comment && <CommentBlock id={item.id}/>}
+            <UpdateModal updateOpen={updateOpen} handleUpdateClose={handleUpdateClose} item={item}/>
           </Paper>
         ))}
       </Box>

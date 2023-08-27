@@ -57,8 +57,7 @@ export const loginStyle={
   height:"100vh",
   width:"100vw",
   backgroundAttachment:"fixed",
-  
-
+  overflow:"scroll",
 }
 
 

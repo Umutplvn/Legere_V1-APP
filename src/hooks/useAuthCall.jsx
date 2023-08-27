@@ -40,12 +40,10 @@ const useAuthCall = () => {
       );
       dispatch(registerSuccess(data));
       toastSuccessNotify("Register successfull")
-
       navigate("/")
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify(error)
-
+      toastErrorNotify("Register failed")
     }
   };
 

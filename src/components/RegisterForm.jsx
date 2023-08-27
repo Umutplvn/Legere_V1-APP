@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import { Formik, Form } from "formik";
-import { object, string, number, date } from "yup";
+import { object, string } from "yup";
 import useAuthCall from "../hooks/useAuthCall";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
 
 import {
   btnStyle,
@@ -21,7 +20,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const AuthForm = () => {
+const RegisterForm = () => {
   const { register } = useAuthCall();
   const [visible, setVisible] = useState(true);
   const setPass = () => {
@@ -259,4 +258,4 @@ const AuthForm = () => {
   );
 };
 
-export default AuthForm;
+export default RegisterForm;

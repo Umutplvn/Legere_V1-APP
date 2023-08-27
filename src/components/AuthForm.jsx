@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Formik, Form } from "formik";
-import { object, string, number, date } from "yup";
+import { object, string } from "yup";
 import useAuthCall from "../hooks/useAuthCall";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -63,6 +63,7 @@ const AuthForm = () => {
         >
           LOGIN
         </Typography>
+        
 
         <Formik
           initialValues={{ email: "", password: "", username: "" }}

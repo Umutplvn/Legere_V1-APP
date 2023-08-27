@@ -39,7 +39,17 @@ const useDataCall = () => {
       console.log(error);
     }
   };
-
+  const putData = async (url, id, info) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axiosWithToken.put(`${url}/${id}/`, info);
+      dispatch(postDataSuccess({ url, data }));
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify(error.response.data.detail);
+      console.log(error);
+    }
+  };
 
 
   
@@ -74,7 +84,7 @@ const useDataCall = () => {
  
 
 
-  return { getData, deleteData, getDataLikes, postData};
+  return { getData, deleteData, getDataLikes, postData, putData};
 };
 
 export default useDataCall;
