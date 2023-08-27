@@ -11,6 +11,7 @@ export const authSlice = createSlice({
     currentUser:null,
     token:null,
     id:null,
+    avatar:""
     
   },
 
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
     state.currentUser=payload?.user?.username;
     state.token=payload?.key;
     state.id=payload?.user?.id
+    state.avatar=payload?.user?.image
    },
    logoutSuccess: (state)=>{
     state.loading=false;

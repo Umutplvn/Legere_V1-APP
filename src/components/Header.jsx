@@ -21,13 +21,17 @@ import { useSelector } from "react-redux";
 import appIcon from "../assets/appIcon.jpg"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import DrawIcon from '@mui/icons-material/Draw';
+import PersonIcon from '@mui/icons-material/Person';
 
 const Header = () => {
   const navigate = useNavigate();
   const { logout } = useAuthCall();
   const { currentUser } = useSelector((state) => state.auth);
+  const { avatar } = useSelector((state) => state.auth);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -199,14 +203,15 @@ const Header = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            {currentUser ? (
+              <>
+              <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={avatar} />
               </IconButton>
             </Tooltip>
-
-            {currentUser ? (
               <Menu
+
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
@@ -236,10 +241,17 @@ const Header = () => {
                 </MenuItem>
                 
               </Menu>
+              </>
             ) 
+
             : 
             
             (
+<>              <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="User"><PersonIcon/></Avatar>
+              </IconButton>
+            </Tooltip>
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -264,9 +276,11 @@ const Header = () => {
                     <Icon>{item.icon}</Icon>
                     <Typography textAlign="center">{item.text}</Typography>
                   </MenuItem>
-                ))}
+
+))}
                 
               </Menu>
+</>
             )}
           </Box>
         </Toolbar>
