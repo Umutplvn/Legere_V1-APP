@@ -16,13 +16,13 @@ import cloneDeep from "lodash/cloneDeep";
 
 const NewBlog = () => {
   const { getData, postData } = useDataCall();
-  const { categories } = useSelector((state) => state.blogs);
+  const { categories, blogs } = useSelector((state) => state.blogs);
 
   const status = [
     { name: "Publish", letter: "p" },
     { name: "Draft", letter: "d" },
   ];
-  let [category, setCategory] = useState({
+  let [content, setContent] = useState({
     title: "",
     content: "",
     image: "",
@@ -31,11 +31,13 @@ const NewBlog = () => {
     slug: "",
   });
 
+  console.log(blogs);
+
   const blogPost = () => {
-    if (category.status == "p") {
-      postData("blogs", "", category);
+    if (content.status == "p") {
+      postData("blogs", "", content);
       getData("blogs")
-      setCategory ({
+      setContent ({
         title: "",
         content: "",
         image: "",
@@ -44,13 +46,13 @@ const NewBlog = () => {
         slug: "",
       });
     } else {
-      let newObj = cloneDeep(category);
+      let newObj = cloneDeep(content);
       let newArr = [];
       const oldArr = JSON.parse(localStorage.getItem("newArr") || "[]");
       newArr = oldArr;
       newArr.push(newObj);
       localStorage.setItem("newArr", JSON.stringify(newArr));
-      setCategory ({
+      setContent ({
         title: "",
         content: "",
         image: "",
@@ -68,7 +70,7 @@ const NewBlog = () => {
   }, []);
 
   const handleChange = (e) => {
-    setCategory({ ...category, [e.target.name]: e.target.value });
+    setContent({ ...content, [e.target.name]: e.target.value });
 
   };
 
@@ -91,7 +93,7 @@ const NewBlog = () => {
                 placeholder="Title"
                 sx={{ padding: "1rem", borderRadius: "1rem" }}
                 name="title"
-                value={category.title}
+                value={content.title}
               />
             </FormControl>
 
@@ -99,7 +101,7 @@ const NewBlog = () => {
               <TextField
                 onChange={handleChange}
                 placeholder="Content"
-                value={category.content}
+                value={content.content}
                 sx={{
                   height: "200px",
                   borderRadius: "1rem",
@@ -117,7 +119,7 @@ const NewBlog = () => {
                 name="image"
                 variant="standart"
                 placeholder="Image URL"
-                value={category.image}
+                value={content.image}
                 sx={{
                   padding: "1rem",
                   borderTop: "solid #aaaaaa",
@@ -132,7 +134,7 @@ const NewBlog = () => {
                 id="category"
                 label="Category"
                 onChange={handleChange}
-                value={category.category}
+                value={content.category}
                 name="category"
               >
                 {categories.map((item, index) => (
@@ -151,7 +153,7 @@ const NewBlog = () => {
                 label="Publish/Draft"
                 name="status"
                 onChange={handleChange}
-                value={category.status}
+                value={content.status}
               >
                 {status.map((item, index) => (
                   <MenuItem key={index} value={item.letter}>{item.name}</MenuItem>
