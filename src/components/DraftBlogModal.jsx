@@ -111,7 +111,7 @@ const DraftBlogModal = ({
                     name="category"
                   >
                     {categories?.map((item) => (
-                      <MenuItem value={Number(item?.id)}>{item?.name}</MenuItem>
+                      <MenuItem value={Number(item?.id)} key={item?.id}>{item?.name}</MenuItem>
                     ))}
                   </Select>
                 </FormControl>

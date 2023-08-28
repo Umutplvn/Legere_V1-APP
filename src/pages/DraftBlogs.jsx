@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Box, Button, Grid, Paper, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import useDataCall from "../hooks/useDataCall";
@@ -9,7 +9,7 @@ const DraftBlogs = () => {
   const {postData, getData}=useDataCall()
   const [open, setOpen] = React.useState(false);
   const[info, setInfo]=useState()
-
+  const [newData, setNewData]= useState()
   
   const handleOpen = (index) => {
     setOpen(true)
@@ -28,7 +28,11 @@ const DraftBlogs = () => {
   const handleClose = () => setOpen(false);
 const navigate=useNavigate()
 
-const [newData, setNewData]= useState(JSON.parse(localStorage.getItem("newArr")))
+useEffect(() => {
+  setNewData(JSON.parse(localStorage.getItem("newArr")))
+
+}, [])
+
 
 
 const postDraft=(item, index)=>{
@@ -47,7 +51,7 @@ const postDraft=(item, index)=>{
   return (
     <Box container  height={"100%"} >
 
-{newData.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
+{newData?.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
 <Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem", cursor:"pointer", "&:hover":{  color:"red"}  }} onClick={()=> navigate("/new-blog")}>Let's have one!</Typography>
 </>
 

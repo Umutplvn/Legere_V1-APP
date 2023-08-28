@@ -9,8 +9,8 @@ const {getData}=useDataCall()
 
 useEffect(() => {
   getData("blogs")
-  let newArr=[""]
-  localStorage.setItem("newArr", newArr)
+  let newArr=[]
+  localStorage.setItem("newArr", JSON.stringify(newArr))
 }, [])
 
 
