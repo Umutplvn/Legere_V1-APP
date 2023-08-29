@@ -55,7 +55,7 @@ const useDataCall = () => {
   const deleteData =async (id) => {
     dispatch(fetchStart())
     try {
-      await axiosWithToken.delete(`blogs/${id}/`)
+      await axiosWithToken.delete(`blogs/${id}`)
     toastSuccessNotify("Successfully deleted")
     getData("blogs")
     } catch (error) {

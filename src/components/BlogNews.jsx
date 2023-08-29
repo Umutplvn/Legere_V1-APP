@@ -15,7 +15,7 @@ const BlogNews = () => {
   }, [])
   const { blogs } = useSelector((state) => state?.blogs);
   const navigate = useNavigate();
-  const { getDataLikes } = useDataCall();
+  const { getDataLikes, postData } = useDataCall();
   const { getData } = useDataCall();
 
   const handleLikes = (id) => {
@@ -23,7 +23,7 @@ const BlogNews = () => {
     getData("blogs");
   };
 
- 
+  
   
 
   return (

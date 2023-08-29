@@ -7,7 +7,6 @@ export const flexBox = {
  m:"auto",
   flexDirection: "column",
   gap: "1.8rem",
-  // width: "100%",
   m: "auto",
   padding: "2rem 1rem",
   justifyContent: "center",
@@ -141,7 +140,6 @@ export const registerStyle={
 }
 
 export const homeStyle = {
-  // backgroundImage:`url(${astronaut})`,
   backgroundColor:"white",
   width:"100%",
   height:"100%",
@@ -155,7 +153,6 @@ export const homeStyle = {
 }
 
 export const detailPageStyle = {
-  // backgroundImage:`url(${space})`,
   backgroundColor:"white",
   m:"auto",
   alignItems:"center",
@@ -180,3 +177,15 @@ export const emojiStyle = {
 };
 
 
+
+export const profileBox = {
+  display:"flex",
+   padding:"1rem", 
+   flexDirection:"column", 
+   alignItems:'center', 
+   gap:"0.5rem", 
+   width:"20rem", 
+   m:"3rem auto", 
+   boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+    borderRadius:"1rem"
+  } 

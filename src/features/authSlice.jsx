@@ -9,7 +9,8 @@ export const authSlice = createSlice({
     currentUser:null,
     token:null,
     id:null,
-    avatar:""
+    avatar:"",
+    user:[]
     
   },
 
@@ -31,6 +32,7 @@ export const authSlice = createSlice({
     state.token=payload?.key;
     state.id=payload?.user?.id
     state.avatar=payload?.user?.image
+    state.user=payload?.user
    },
    logoutSuccess: (state)=>{
     state.loading=false;

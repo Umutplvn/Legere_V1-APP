@@ -1,7 +1,6 @@
 import Modal from "@mui/material/Modal";
 import { Button, Grid, Input, Paper, TextField } from "@mui/material";
 import React, { useEffect } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -32,10 +31,8 @@ const DraftBlogModal = ({
     info.status = "p";
     postData("blogs", "", info);
     const erase = newData[index - 1];
-    console.log("erase", erase);
     if (erase == undefined) {
-      let filtered = "";
-      console.log("filtered", filtered);
+      let filtered = [];
       setNewData([]);
       localStorage.setItem("newArr", JSON.stringify(filtered));
     } else {

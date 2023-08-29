@@ -31,7 +31,6 @@ const NewBlog = () => {
     slug: "",
   });
 
-  console.log(blogs);
 
   const blogPost = () => {
     if (content.status == "p") {

@@ -35,9 +35,6 @@ const DetailPage = () => {
     getData("blogs");
   };
 
-
-  
-
   return (
 
 
