@@ -64,25 +64,13 @@ const useDataCall = () => {
     }
   };
 
-  const getDataLikes = async (id) => {
-    dispatch(fetchStart());
-    try {
-      const [likes, blogs] = await Promise.all([
-        axiosWithToken.post(`${id}`),
-        axiosWithToken("blogs/"),
-      ]);
-      dispatch(getDataLikeSuccess([likes?.data, blogs?.data]));
-    } catch (error) {
-      dispatch(fetchFail());
-      toastErrorNotify(`You have to login first`);
-    }
-  };
+  
 
 
  
 
 
-  return { getData, deleteData, getDataLikes, postData, putData};
+  return { getData, deleteData, postData, putData};
 };
 
 export default useDataCall;

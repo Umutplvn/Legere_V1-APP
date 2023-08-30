@@ -14,12 +14,12 @@ import DeleteModal from "../components/DeleteModal";
 import UpdateModal from "../components/UpdateModal";
 
 const DetailPage = () => {
-  const { blogs } = useSelector((state) => state?.blogs);
+  const { blogs, likes } = useSelector((state) => state?.blogs);
   const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
   const veri = blogs.filter((data) => data.id == id);
   const [comment, setComment] = useState(false);
-  const { getDataLikes, getData } = useDataCall();
+  const { postData, getData } = useDataCall();
   const [open, setOpen] = React.useState(false);
   const [updateOpen, setUpdateOpen]=useState(false)
   const handleClose = () => setOpen(false);
@@ -27,11 +27,12 @@ const DetailPage = () => {
   const handleUpdateOpen =()=>setUpdateOpen(true)
   const handleUpdateClose = () => setUpdateOpen(false);
 
-  
+  const likedPost= likes.map((item)=>item.post)
+
 
 
   const handleLikes = (id) => {
-    getDataLikes(`likes/${id}/`);
+    postData("likes", `${id}/`, "")
     getData("blogs");
   };
 
@@ -106,7 +107,7 @@ const DetailPage = () => {
             >
               <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
                 <Box display={"flex"}>
-                  {item.likes >= 1 ? (
+                  {likedPost.includes(item.id)  ? (
                     <FavoriteIcon
                       sx={{ cursor: "pointer", color: "red" }}
                       onClick={() => handleLikes(item.id)}

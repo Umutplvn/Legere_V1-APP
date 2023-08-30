@@ -16,18 +16,16 @@ const BlogNews = () => {
   const { blogs } = useSelector((state) => state?.blogs);
   const {likes}=useSelector((state)=>state.blogs)
   const navigate = useNavigate();
-  const { getDataLikes, postData } = useDataCall();
-  const { getData } = useDataCall();
+  const { postData, getData } = useDataCall();
 
   const handleLikes = (id) => {
-    getDataLikes(`likes/${id}/`);
-    // postData("likes", `${id}/`, "")
+    postData("likes", `${id}/`, "")
     getData("blogs");
   };
 
+const likedPost= likes.map((item)=>item.post)
+  
 
-  
-  
   
 
   return (
@@ -108,7 +106,7 @@ const BlogNews = () => {
               >
                 <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
                   <Box display={"flex"}>
-                    {item.likes >= 1 ? (
+                    {likedPost.includes(item.id) ? (
                       <FavoriteIcon
                         sx={{ cursor: "pointer", color: "red" }}
                         onClick={() => handleLikes(item.id)}
@@ -121,7 +119,7 @@ const BlogNews = () => {
                     )}
 
                     <Typography>{
-                    
+                    item.likes
                       
                       }</Typography>
                   </Box>
