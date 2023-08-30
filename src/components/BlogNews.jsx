@@ -14,15 +14,19 @@ const BlogNews = () => {
     getData("blogs");
   }, [])
   const { blogs } = useSelector((state) => state?.blogs);
+  const {likes}=useSelector((state)=>state.blogs)
   const navigate = useNavigate();
   const { getDataLikes, postData } = useDataCall();
   const { getData } = useDataCall();
 
   const handleLikes = (id) => {
     getDataLikes(`likes/${id}/`);
+    // postData("likes", `${id}/`, "")
     getData("blogs");
   };
 
+
+  
   
   
 
@@ -116,7 +120,10 @@ const BlogNews = () => {
                       />
                     )}
 
-                    <Typography>{item.likes}</Typography>
+                    <Typography>{
+                    
+                      
+                      }</Typography>
                   </Box>
                   <Box display={"flex"}>
                     <ChatBubbleIcon sx={{ cursor: "pointer" }} />
