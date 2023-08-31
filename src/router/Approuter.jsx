@@ -11,13 +11,12 @@ import DraftBlogs from "../pages/DraftBlogs";
 import PrivateRouter from "../pages/PrivateRouter";
 
 const Approuter = () => {
-
   return (
     <>
-      <Header />
+       <Header />
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route index element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<PrivateRouter />}>
@@ -29,7 +28,7 @@ const Approuter = () => {
           />
           <Route path="/drafts" element={<DraftBlogs />} />
         </Route>
-      </Routes>
+      </Routes> 
     </>
   );
 };

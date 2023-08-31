@@ -23,24 +23,15 @@ const blogDataSlice = createSlice({
 
     getDataSuccess: (state, {payload}) => {
       state.loading = false;
-      state[payload.url]= payload.data;
+      state.error = false;
+      state[payload?.url]= payload?.data;
     },
 
     postDataSuccess: (state, {payload}) => {
       state.loading = false;
       state.error = true;
-      state[payload.url]= payload.data;
+      state[payload?.url]= payload?.data;
     },
-
-  
-    // getDataLikeSuccess:(state, {payload})=>{
-    //   state.loading = false;
-    //   state.likes=payload[0]
-    //   state.blogs=payload[1]
-    //   state.comments=payload[2]
-    // },
-
-
 
   }
 }

@@ -10,9 +10,12 @@ import useDataCall from "../hooks/useDataCall";
 import { useEffect } from "react";
 
 const BlogNews = () => {
+
+  
   useEffect(() => {
     getData("blogs");
   }, [])
+  
   const { blogs } = useSelector((state) => state?.blogs);
   const {likes}=useSelector((state)=>state.blogs)
   const navigate = useNavigate();
@@ -20,13 +23,12 @@ const BlogNews = () => {
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "")
-    getData("blogs");
   };
 
 const likedPost= likes.map((item)=>item.post)
   
 
-  
+  console.log(blogs);
 
   return (
     <Box container  height={"100%"} >
