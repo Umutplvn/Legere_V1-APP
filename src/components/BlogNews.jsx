@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useDataCall from "../hooks/useDataCall";
 import { useEffect } from "react";
+import axios from "axios";
 
 const BlogNews = () => {
 
@@ -19,16 +20,19 @@ const BlogNews = () => {
   const { blogs } = useSelector((state) => state?.blogs);
   const {likes}=useSelector((state)=>state.blogs)
   const navigate = useNavigate();
-  const { postData, getData } = useDataCall();
+  const { postData, getData, getViews } = useDataCall();
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "")
   };
 
 const likedPost= likes.map((item)=>item.post)
-  
 
-  console.log(blogs);
+  const handleNavigate=(item)=>{
+    navigate(`/detail/${item}`)
+    getViews(item)
+  }
+
 
   return (
     <Box container  height={"100%"} >
@@ -85,7 +89,7 @@ const likedPost= likes.map((item)=>item.post)
                 >
                   {item.content}
                 </Typography>
-                <Typography sx={{ mt: "15px" }}>{item.publish_date}</Typography>
+                <Typography sx={{ mt: "15px" }}>{item.publish_date.slice(0,10)} / {item.publish_date.slice(11,19)}</Typography>
               </Box>
               {/* Content User Info */}
               <Box
@@ -137,7 +141,7 @@ const likedPost= likes.map((item)=>item.post)
                 <Box>
                   <Button
                     sx={btnLead}
-                    onClick={() => navigate(`/detail/${item.id}`)}
+                    onClick={()=>handleNavigate(item.id)}
                   >
                     Read More
                   </Button>

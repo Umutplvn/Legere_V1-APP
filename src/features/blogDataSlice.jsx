@@ -9,6 +9,7 @@ const blogDataSlice = createSlice({
     likes:[], 
     comments:[],
     categories:[],
+    view:[]
   },
 
   reducers: {
@@ -26,6 +27,7 @@ const blogDataSlice = createSlice({
       state.error = false;
       state[payload?.url]= payload?.data;
     },
+
 
     postDataSuccess: (state, {payload}) => {
       state.loading = false;

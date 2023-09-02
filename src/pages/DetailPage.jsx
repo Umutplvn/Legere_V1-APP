@@ -1,5 +1,5 @@
 import { Box, Grid, Paper } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Avatar, Button, Typography } from "@mui/material";
@@ -31,8 +31,12 @@ const DetailPage = () => {
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "");
-    getData("blogs");
   };
+
+  useEffect(() => {
+    getData("blogs");
+  }, [])
+  
 
   return (
     <Grid container sx={detailPageStyle}>
@@ -77,7 +81,7 @@ const DetailPage = () => {
                 <Box padding={"0.5rem"}>
                   <Typography m={"2rem 0"}>{item.content}</Typography>
                   <Typography sx={{ mt: "15px" }}>
-                    {item.publish_date}
+                    {item.publish_date.slice(0,10)} / {item.publish_date.slice(11,19)}
                   </Typography>
                 </Box>
                 {/* Content User Info */}
