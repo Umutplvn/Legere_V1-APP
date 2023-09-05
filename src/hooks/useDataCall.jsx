@@ -11,7 +11,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import axios from "axios";
 
 const useDataCall = () => {
-  const { axiosPublic, axiosWithToken } = useAxios();
+  const { axiosWithToken } = useAxios();
   const {token}= useSelector((state)=>state.auth)
   const dispatch = useDispatch();
 
