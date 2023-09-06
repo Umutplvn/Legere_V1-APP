@@ -21,6 +21,7 @@ import appIcon from "../assets/appIcon.jpg"
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import DrawIcon from '@mui/icons-material/Draw';
 import PersonIcon from '@mui/icons-material/Person';
+import React from "react";
 
 const Header = () => {
   const navigate = useNavigate();

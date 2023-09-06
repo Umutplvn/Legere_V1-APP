@@ -5,6 +5,7 @@ import { homeStyle } from "../styles/globalStyles";
 
 const Home = () => {
 
+
 const {getData}=useDataCall()
 
 useEffect(() => {

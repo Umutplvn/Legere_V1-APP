@@ -36,7 +36,7 @@ const likedPost= likes.map((item)=>item.post)
   return (
     <Box container  height={"100%"} >
       <Grid container >
-        {blogs.map((item) => (
+        {blogs?.map((item) => (
           <Grid
             key={item.id}
             item
