@@ -14,10 +14,10 @@ import DeleteModal from "../components/DeleteModal";
 import UpdateModal from "../components/UpdateModal";
 
 const DetailPage = () => {
-  const { blogs, likes } = useSelector((state) => state?.blogs);
+  const { blogs } = useSelector((state) => state?.blogs);
   const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
-  const {userId}=useSelector((state)=>state.auth)
+  const { userId } = useSelector((state) => state.auth);
   const veri = blogs.filter((data) => data.id == id);
   const [comment, setComment] = useState(false);
   const { postData, getData } = useDataCall();
@@ -28,10 +28,8 @@ const DetailPage = () => {
   const handleUpdateOpen = () => setUpdateOpen(true);
   const handleUpdateClose = () => setUpdateOpen(false);
 
-  const likedPost = likes.map((item) => item.post);
-
- const likesN= veri[0].likes_n
- const likeDet= likesN.map((item)=>item.user_id)
+  const likesN = veri[0].likes_n;
+  const likeDet = likesN.map((item) => item.user_id);
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "");
@@ -39,13 +37,12 @@ const DetailPage = () => {
 
   useEffect(() => {
     getData("blogs");
-  }, [])
-  
+  }, []);
 
   return (
     <Grid container sx={detailPageStyle}>
       <Grid item xs={11} sm={10} md={9} lg={7} xl={5} m={"auto"} width={"100%"}>
-        <Box >
+        <Box>
           <Box mt={"40px"}>
             {veri.map((item) => (
               <Paper
@@ -85,7 +82,8 @@ const DetailPage = () => {
                 <Box padding={"0.5rem"}>
                   <Typography m={"2rem 0"}>{item.content}</Typography>
                   <Typography sx={{ mt: "15px" }}>
-                    {item.publish_date.slice(0,10)} / {item.publish_date.slice(11,19)}
+                    {item.publish_date.slice(0, 10)} /{" "}
+                    {item.publish_date.slice(11, 19)}
                   </Typography>
                 </Box>
                 {/* Content User Info */}
@@ -171,7 +169,6 @@ const DetailPage = () => {
             ))}
           </Box>
         </Box>
-        
       </Grid>
     </Grid>
   );
