@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import cloneDeep from "lodash/cloneDeep";
+import { btnGreen } from "../styles/globalStyles";
 
 const NewBlog = () => {
   const { getData, postData } = useDataCall();
@@ -77,8 +78,10 @@ const NewBlog = () => {
     <Grid container mt={4}>
       <Grid item xs={11} md={6} m={"auto"}>
         <Paper
+
           elevation={6}
           sx={{
+            padding:"1rem",
             display: "flex",
             flexDirection: "column",
             border: "2px solid, black",
@@ -126,7 +129,7 @@ const NewBlog = () => {
               />
             </FormControl>
 
-            <FormControl fullWidth>
+            <FormControl fullWidth sx={{mt:"0.5rem"}} >
               <InputLabel id="demo-simple-select-label">Category</InputLabel>
               <Select
                 labelId="category"
@@ -142,7 +145,7 @@ const NewBlog = () => {
               </Select>
             </FormControl>
 
-            <FormControl fullWidth>
+            <FormControl fullWidth sx={{mt:"0.5rem"}} >
               <InputLabel id="demo-simple-select-label">
                 Publish/Draft
               </InputLabel>
@@ -159,7 +162,9 @@ const NewBlog = () => {
                 ))}
               </Select>
             </FormControl>
-            <Button type="submit" onClick={blogPost} sx={{color:"success"}}>
+            <Button type="submit"  onClick={blogPost} sx={{ backgroundColor: "green", 
+  color:"white", 
+  "&:hover":{backgroundColor:"success.dark"}, width:"5rem", m:"1rem auto"}} >
               Submit
             </Button>
           </FormControl>

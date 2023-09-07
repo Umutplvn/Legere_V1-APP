@@ -46,9 +46,11 @@ const DetailPage = () => {
           <Box mt={"40px"}>
             {veri.map((item) => (
               <Paper
+              
                 key={item.id}
                 elevation={3}
                 sx={{
+                  p:"1.5rem",
                   m: "auto",
                   color: "black",
                   backgroundColor: "#eef8fa",
@@ -121,16 +123,17 @@ const DetailPage = () => {
 
                       <Typography>{item.likes}</Typography>
                     </Box>
-                    <Box display={"flex"}>
-                      <RemoveRedEyeIcon sx={{ cursor: "pointer" }} />
-                      <Typography>{item.post_views}</Typography>
-                    </Box>
+                  
                     <Box display={"flex"}>
                       <ChatBubbleIcon
                         onClick={() => setComment(!comment)}
                         sx={{ cursor: "pointer" }}
                       />
                       <Typography>{item.comment_count}</Typography>
+                    </Box>
+                    <Box display={"flex"}>
+                      <RemoveRedEyeIcon sx={{ cursor: "pointer" }} />
+                      <Typography>{item.post_views}</Typography>
                     </Box>
                   </Box>
                 </Box>

@@ -43,8 +43,8 @@ const BlogNews = () => {
 
 
   return (
-    <Box container  height={"100%"} >
-      <Grid container >
+    <Box container  height={"100%"}  >
+      <Grid container  >
         {blogs?.map((item) => (
           <Grid
             key={item.id}
@@ -52,7 +52,7 @@ const BlogNews = () => {
             xs={12}
             sm={4}
             md={3}
-            sx={{ minWidth: "320px", height: "500px", padding: "1rem", m:"auto" }}
+            sx={{ minWidth: "320px", height: "500px", padding: "1rem", m:"1rem auto" }}
           >
             <Paper
               elevation={3}
@@ -64,6 +64,7 @@ const BlogNews = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+               
               }}
             >
               <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
@@ -72,7 +73,7 @@ const BlogNews = () => {
                   src={item.image}
                   height={"180px"}
                   style={{
-                    borderRadius: "1rem",
+                   padding:"1rem",
                     aspectRatio: "4/3",
                     objectFit: "contain",
                   }}

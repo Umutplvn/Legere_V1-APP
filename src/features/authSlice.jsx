@@ -40,6 +40,9 @@ export const authSlice = createSlice({
     state.currentUser=null;
     state.token=null;
     state.userId=null;
+    state.user=[];
+    state.avatar=""
+
   },
 
    registerSuccess: (state, {payload})=>{

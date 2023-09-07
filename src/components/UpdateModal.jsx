@@ -1,5 +1,5 @@
 import Modal from "@mui/material/Modal";
-import { Button, Grid, Input, Paper, TextField } from "@mui/material";
+import { Box, Button, Grid, Input, Paper, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import useDataCall from "../hooks/useDataCall";
 import { useNavigate } from "react-router";
+import { btnGreen, btnRed } from "../styles/globalStyles";
 
 
 
@@ -27,10 +28,8 @@ const navigate = useNavigate()
 
   const handleSubmit=(id)=>{ 
     putData("blogs", id, info)
+    handleUpdateClose() 
     navigate("/")
-    handleUpdateClose()
-    console.log(info);
- 
   }
 
 
@@ -57,7 +56,7 @@ const navigate = useNavigate()
                borderRadius: "1rem",
              }}
            >
-             <FormControl>
+             <FormControl sx={{p:"1rem"}}>
                <Input
                  onChange={handleChange}
                  placeholder="Title"
@@ -91,10 +90,11 @@ const navigate = useNavigate()
                />
 
                <FormControl fullWidth>
-                 <InputLabel id="demo-simple-select-label">
+                 <InputLabel sx={{mt:"0.5rem"}} id="demo-simple-select-label">
                    Category
                  </InputLabel>
                  <Select
+                 sx={{mt:"1rem"}}
                    labelId="category"
                    id="category"
                    onChange={handleChange}
@@ -106,8 +106,11 @@ const navigate = useNavigate()
                    ))}
                  </Select>
                </FormControl>
-               <Button onClick={handleUpdateClose}>Cancel</Button>
-               <Button onClick={()=>handleSubmit(item.id)}>Public</Button>
+               <Box  sx={{m:"auto", display:"flex", gap:"1rem", p:"1rem"}}>
+               <Button sx={btnRed} onClick={handleUpdateClose}>Cancel</Button>
+               <Button sx={btnGreen} onClick={()=>handleSubmit(item.id)}>Public</Button>
+
+               </Box>
              </FormControl>
            </Paper>
    

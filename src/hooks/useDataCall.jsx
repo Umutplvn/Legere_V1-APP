@@ -54,8 +54,8 @@ const useDataCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosWithToken.put(`${url}/${id}/`, info);
-      dispatch(postDataSuccess({ url, data }));
       getData("blogs")
+      
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify(error.response.data.detail);

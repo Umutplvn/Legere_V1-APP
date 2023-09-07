@@ -100,7 +100,8 @@ export const btnRed ={
 export const btnGreen ={
   backgroundColor: "green", 
   color:"white", 
-  "&:hover":{backgroundColor:"success.dark"}
+  "&:hover":{backgroundColor:"success.dark"},
+
 }
 
 
@@ -160,8 +161,7 @@ export const detailPageStyle = {
   display:"flex",
   flexDirection:"column",
   backgroundAttachment:"fixed",
-
-
+ 
 }
 
 export const emojiStyle = {

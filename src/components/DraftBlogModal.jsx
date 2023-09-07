@@ -1,5 +1,5 @@
 import Modal from "@mui/material/Modal";
-import { Button, Grid, Input, Paper, TextField } from "@mui/material";
+import { Box, Button, Grid, Input, Paper, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -62,6 +62,7 @@ const DraftBlogModal = ({
                 flexDirection: "column",
                 border: "2px solid, black",
                 borderRadius: "1rem",
+                p:"1rem"
               }}
             >
               <FormControl>
@@ -98,7 +99,7 @@ const DraftBlogModal = ({
                   }}
                 />
 
-                <FormControl fullWidth >
+                <FormControl fullWidth sx={{mt:"1rem"}}>
                  
                   <Select
                     labelId="category"
@@ -112,8 +113,11 @@ const DraftBlogModal = ({
                     ))}
                   </Select>
                 </FormControl>
+                <Box sx={{display:"flex", m:"1rem auto", gap:"1rem" }}>
                 <Button sx={btnRed} onClick={handleClose}>Cancel</Button>
                 <Button sx={btnGreen} onClick={handleSubmit}>Public</Button>
+
+                </Box>
               </FormControl>
             </Paper>
           </Grid>

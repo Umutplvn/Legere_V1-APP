@@ -54,6 +54,7 @@ const CommentBlock = ({ id }) => {
               gap={1}
               justifyContent={"end"}
               height={"2rem"}
+              mt={"0.5rem"}
             >
               <Button sx={btnRed} onClick={() => setText("")}>Clear</Button>
               <Button sx={btnGreen} onClick={handleComment}>
