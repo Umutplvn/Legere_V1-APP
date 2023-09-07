@@ -11,14 +11,14 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import axios from "axios";
 
 const useDataCall = () => {
-  const { axiosWithToken } = useAxios();
+  const { axiosWithToken, axiosPublic } = useAxios();
   const {token}= useSelector((state)=>state.auth)
   const dispatch = useDispatch();
 
   const getData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken(`${url}/`);
+      const { data } = await axiosPublic(`${url}/`);
       dispatch(getDataSuccess({ url, data }));
     } catch (error) {
       dispatch(fetchFail());
@@ -40,7 +40,6 @@ const useDataCall = () => {
     dispatch(fetchStart());
     try {
       const { data } = await axiosWithToken.post(`${url}/${id}`, info);
-      console.log("data",data);
       dispatch(postDataSuccess({ url, data }));
       getData("blogs")
     } catch (error) {
@@ -49,6 +48,8 @@ const useDataCall = () => {
       console.log(error);
     }
   };
+
+  
   const putData = async (url, id, info) => {
     dispatch(fetchStart());
     try {

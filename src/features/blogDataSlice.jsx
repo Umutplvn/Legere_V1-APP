@@ -6,7 +6,6 @@ const blogDataSlice = createSlice({
     blogs: [],
     loading: false,
     error: false,
-    likes:[], 
     comments:[],
     categories:[],
     view:[]
@@ -34,7 +33,6 @@ const blogDataSlice = createSlice({
       state.error = true;
       state[payload?.url]= payload?.data;
     },
-
   }
 }
 )

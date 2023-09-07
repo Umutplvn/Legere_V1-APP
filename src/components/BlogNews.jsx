@@ -8,16 +8,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useDataCall from "../hooks/useDataCall";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const BlogNews = () => {
-
-  
   useEffect(() => {
     getData("blogs");
   }, [])
+
+    let arr=[]
   
-  const { blogs } = useSelector((state) => state?.blogs);
-  const {likes}=useSelector((state)=>state.blogs)
+  const {blogs} = useSelector((state) => state?.blogs);
+  const {userId}=useSelector((state)=>state.auth)
   const navigate = useNavigate();
   const { postData, getData, getViews } = useDataCall();
 
@@ -25,10 +26,17 @@ const BlogNews = () => {
     postData("likes", `${id}/`, "")
   };
 
-const likedPost= likes.map((item)=>item.post)
+
+  const handleReturn=(item)=>{
+    const data=item.likes_n.map((veri)=>veri.user_id==userId)
+    if(data.includes(true)){
+      return true
+    }else{
+      return false
+    }
+  }
 
   const handleNavigate=(item)=>{
-    navigate(`/detail/${item}`)
     getViews(item)
   }
 
@@ -111,7 +119,8 @@ const likedPost= likes.map((item)=>item.post)
               >
                 <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
                   <Box display={"flex"}>
-                    {likedPost.includes(item.id) ? (
+                    {handleReturn(item)
+                    ? (
                       <FavoriteIcon
                         sx={{ cursor: "pointer", color: "red" }}
                         onClick={() => handleLikes(item.id)}
@@ -138,12 +147,15 @@ const likedPost= likes.map((item)=>item.post)
                   </Box>
                 </Box>
                 <Box>
+                  <Link to={`detail/${item.id}`}>
                   <Button
                     sx={btnLead}
                     onClick={()=>handleNavigate(item.id)}
                   >
                     Read More
                   </Button>
+                  
+                  </Link>
                 </Box>
               </Box>
             </Paper>

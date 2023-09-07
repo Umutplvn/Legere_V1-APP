@@ -17,6 +17,7 @@ const DetailPage = () => {
   const { blogs, likes } = useSelector((state) => state?.blogs);
   const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
+  const {userId}=useSelector((state)=>state.auth)
   const veri = blogs.filter((data) => data.id == id);
   const [comment, setComment] = useState(false);
   const { postData, getData } = useDataCall();
@@ -28,6 +29,9 @@ const DetailPage = () => {
   const handleUpdateClose = () => setUpdateOpen(false);
 
   const likedPost = likes.map((item) => item.post);
+
+ const likesN= veri[0].likes_n
+ const likeDet= likesN.map((item)=>item.user_id)
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "");
@@ -105,7 +109,7 @@ const DetailPage = () => {
                 >
                   <Box display={"flex"} padding={"0.5rem"} gap={"0.5rem"}>
                     <Box display={"flex"}>
-                      {likedPost.includes(item.id) ? (
+                      {likeDet.includes(userId) ? (
                         <FavoriteIcon
                           sx={{ cursor: "pointer", color: "red" }}
                           onClick={() => handleLikes(item.id)}

@@ -8,7 +8,7 @@ export const authSlice = createSlice({
     error:false,
     currentUser:null,
     token:null,
-    id:null,
+    userId:null,
     avatar:"",
     user:[]
     
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
     state.error=false;
     state.currentUser=payload?.user?.username;
     state.token=payload?.key;
-    state.id=payload?.user?.id
+    state.userId=payload?.user?.id
     state.avatar=payload?.user?.image
     state.user=payload?.user
    },
@@ -39,7 +39,7 @@ export const authSlice = createSlice({
     state.error=false;  
     state.currentUser=null;
     state.token=null;
-    state.id=null;
+    state.userId=null;
   },
 
    registerSuccess: (state, {payload})=>{
@@ -47,7 +47,8 @@ export const authSlice = createSlice({
     state.error=false;
     state.currentUser=payload?.username;
     state.token=payload?.token;
-    state.id=payload?.id
+    state.userId=payload?.id;
+    state.avatar=payload?.image
    } 
   }
 })
