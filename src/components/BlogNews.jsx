@@ -36,8 +36,9 @@ const BlogNews = () => {
     }
   }
 
-  const handleNavigate=(item)=>{
-    getViews(item)
+  const handleNavigate=(id)=>{
+    getViews(id)
+    navigate(`detail/${id}`)
   }
 
 
@@ -147,7 +148,6 @@ const BlogNews = () => {
                   </Box>
                 </Box>
                 <Box>
-                  <Link to={`detail/${item.id}`}>
                   <Button
                     sx={btnLead}
                     onClick={()=>handleNavigate(item.id)}
@@ -155,7 +155,6 @@ const BlogNews = () => {
                     Read More
                   </Button>
                   
-                  </Link>
                 </Box>
               </Box>
             </Paper>
