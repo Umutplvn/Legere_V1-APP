@@ -1,10 +1,4 @@
-import {
-  Button,
-  Grid,
-  Input,
-  Paper,
-  TextField,
-} from "@mui/material";
+import { Button, Grid, Input, Paper, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useDataCall from "../hooks/useDataCall";
 import { useSelector } from "react-redux";
@@ -13,7 +7,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import cloneDeep from "lodash/cloneDeep";
-import { btnGreen } from "../styles/globalStyles";
 
 const NewBlog = () => {
   const { getData, postData } = useDataCall();
@@ -32,12 +25,11 @@ const NewBlog = () => {
     slug: "",
   });
 
-
   const blogPost = () => {
     if (content.status == "p") {
       postData("blogs", "", content);
-      getData("blogs")
-      setContent ({
+      getData("blogs");
+      setContent({
         title: "",
         content: "",
         image: "",
@@ -52,7 +44,7 @@ const NewBlog = () => {
       newArr = oldArr;
       newArr.push(newObj);
       localStorage.setItem("newArr", JSON.stringify(newArr));
-      setContent ({
+      setContent({
         title: "",
         content: "",
         image: "",
@@ -60,10 +52,8 @@ const NewBlog = () => {
         status: "",
         slug: "",
       });
-    }}
-  
-
-
+    }
+  };
 
   useEffect(() => {
     getData("categories");
@@ -71,17 +61,15 @@ const NewBlog = () => {
 
   const handleChange = (e) => {
     setContent({ ...content, [e.target.name]: e.target.value });
-
   };
 
   return (
     <Grid container mt={4}>
       <Grid item xs={11} md={6} m={"auto"}>
         <Paper
-
           elevation={6}
           sx={{
-            padding:"1rem",
+            padding: "1rem",
             display: "flex",
             flexDirection: "column",
             border: "2px solid, black",
@@ -129,7 +117,7 @@ const NewBlog = () => {
               />
             </FormControl>
 
-            <FormControl fullWidth sx={{mt:"0.5rem"}} >
+            <FormControl fullWidth sx={{ mt: "0.5rem" }}>
               <InputLabel id="demo-simple-select-label">Category</InputLabel>
               <Select
                 labelId="category"
@@ -140,12 +128,14 @@ const NewBlog = () => {
                 name="category"
               >
                 {categories.map((item, index) => (
-                  <MenuItem key={index} value={Number(item.id)}>{item.name}</MenuItem>
+                  <MenuItem key={index} value={Number(item.id)}>
+                    {item.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
 
-            <FormControl fullWidth sx={{mt:"0.5rem"}} >
+            <FormControl fullWidth sx={{ mt: "0.5rem" }}>
               <InputLabel id="demo-simple-select-label">
                 Publish/Draft
               </InputLabel>
@@ -158,13 +148,23 @@ const NewBlog = () => {
                 value={content.status}
               >
                 {status.map((item, index) => (
-                  <MenuItem key={index} value={item.letter}>{item.name}</MenuItem>
+                  <MenuItem key={index} value={item.letter}>
+                    {item.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
-            <Button type="submit"  onClick={blogPost} sx={{ backgroundColor: "green", 
-  color:"white", 
-  "&:hover":{backgroundColor:"success.dark"}, width:"5rem", m:"1rem auto"}} >
+            <Button
+              type="submit"
+              onClick={blogPost}
+              sx={{
+                backgroundColor: "green",
+                color: "white",
+                "&:hover": { backgroundColor: "success.dark" },
+                width: "5rem",
+                m: "1rem auto",
+              }}
+            >
               Submit
             </Button>
           </FormControl>

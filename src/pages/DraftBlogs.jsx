@@ -6,13 +6,13 @@ import { useNavigate } from "react-router";
 import DraftBlogModal from "../components/DraftBlogModal";
 
 const DraftBlogs = () => {
-  const {postData, getData}=useDataCall()
+  const { postData, getData } = useDataCall();
   const [open, setOpen] = React.useState(false);
-  const[info, setInfo]=useState()
-  const [newData, setNewData]= useState()
-  
+  const [info, setInfo] = useState();
+  const [newData, setNewData] = useState();
+
   const handleOpen = (index) => {
-    setOpen(true)
+    setOpen(true);
     setInfo({
       title: newData[index].title,
       content: newData[index].content,
@@ -20,121 +20,147 @@ const DraftBlogs = () => {
       category: newData[index].category,
       status: "",
       slug: "",
-      id:index
-    })
-    
-  
+      id: index,
+    });
   };
   const handleClose = () => setOpen(false);
-const navigate=useNavigate()
+  const navigate = useNavigate();
 
-useEffect(() => {
-  setNewData(JSON.parse(localStorage.getItem("newArr")))
+  useEffect(() => {
+    setNewData(JSON.parse(localStorage.getItem("newArr")));
+  }, []);
 
-}, [])
-
-
-
-const postDraft=(item, index)=>{
-    item.status="p"
-    postData("blogs", "", item)
-    const erase = newData.filter((item)=>item !== newData[index])
-    localStorage.setItem("newArr", JSON.stringify(erase))
-    setNewData(erase)
-    getData("blogs")
-    
-  }
-
-
-
+  const postDraft = (item, index) => {
+    item.status = "p";
+    postData("blogs", "", item);
+    const erase = newData.filter((item) => item !== newData[index]);
+    localStorage.setItem("newArr", JSON.stringify(erase));
+    setNewData(erase);
+    getData("blogs");
+  };
 
   return (
-    <Box container  height={"100%"} >
-
-{newData?.length<1? <><Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem" }}>You have no draft.</Typography>  <br/>
-<Typography sx={{color:"#4682A9", fontSize:"30px", fontWeight:"600", textAlign:"center", mt:"1rem", cursor:"pointer", "&:hover":{  color:"red"}  }} onClick={()=> navigate("/new-blog")}>Let's have one!</Typography>
-</>
-
-:
-
-      <Grid container >
-        {newData?.map((item, index) => (
-          <Grid
-            item
-            key={index}
-            xs={12}
-            sm={4}
-            md={3}
-            sx={{ minWidth: "320px", height: "500px", padding: "1rem", m:"auto" }}
+    <Box container height={"100%"}>
+      {newData?.length < 1 ? (
+        <>
+          <Typography
+            sx={{
+              color: "#4682A9",
+              fontSize: "30px",
+              fontWeight: "600",
+              textAlign: "center",
+              mt: "1rem",
+            }}
           >
-            <Paper
-              elevation={3}
+            You have no draft.
+          </Typography>{" "}
+          <br />
+          <Typography
+            sx={{
+              color: "#4682A9",
+              fontSize: "30px",
+              fontWeight: "600",
+              textAlign: "center",
+              mt: "1rem",
+              cursor: "pointer",
+              "&:hover": { color: "red" },
+            }}
+            onClick={() => navigate("/new-blog")}
+          >
+            Let's have one!
+          </Typography>
+        </>
+      ) : (
+        <Grid container>
+          {newData?.map((item, index) => (
+            <Grid
+              item
+              key={index}
+              xs={12}
+              sm={4}
+              md={3}
               sx={{
-                color: "black",
-                "&:hover": { backgroundColor: "#eef8fa" },
-                transition: "0.3s",
-                backgroundColor: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
+                minWidth: "320px",
+                height: "500px",
+                padding: "1rem",
+                m: "auto",
               }}
             >
-              <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
-                <img
-                alt={item?.title}
-                  src={item?.image}
-                  height={"180px"}
-                  style={{
-                    borderRadius: "1rem",
-                    aspectRatio: "4/3",
-                    objectFit: "contain",
-                  }}
-                />
-              </Box>
-
-              <Typography
-                component={"h4"}
-                variant="h5"
-                fontWeight={"600"}
-                sx={{ textAlign: "center" }}
-                
+              <Paper
+                elevation={3}
+                sx={{
+                  color: "black",
+                  "&:hover": { backgroundColor: "#eef8fa" },
+                  transition: "0.3s",
+                  backgroundColor: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
               >
-                {item?.title}
-              </Typography>
+                <Box height={"200px"} padding={"0.5rem"} textAlign={"center"}>
+                  <img
+                    alt={item?.title}
+                    src={item?.image}
+                    height={"180px"}
+                    style={{
+                      borderRadius: "1rem",
+                      aspectRatio: "4/3",
+                      objectFit: "contain",
+                    }}
+                  />
+                </Box>
 
-              {/* Content Text */}
-              <Box padding={"0.5rem"}>
                 <Typography
-                  height={"80px"}
-                  textOverflow="ellipsis"
-                  sx={{ overflow: "hidden", whiteSpace: "pre" }}
+                  component={"h4"}
+                  variant="h5"
+                  fontWeight={"600"}
+                  sx={{ textAlign: "center" }}
                 >
-                  {item.content}
+                  {item?.title}
                 </Typography>
-              
-              </Box>
-              {/* Content User Info */}
-              <Box
-                display={"flex"}
-                alignItems={"center"}
-                padding={"0.5rem"}
-                gap="10px"
-              >
-                <Avatar>
-                  <AccountCircleIcon />
-                </Avatar>
-                <Button onClick={()=>postDraft(item, index)}>Publish</Button>
-                <Button onClick={()=>handleOpen(index)}>Edit</Button>
 
-<DraftBlogModal handleOpen={handleOpen} handleClose={handleClose} open={open}  newData={newData} setNewData={setNewData} index={index} info={info} setInfo={setInfo}/>
+                {/* Content Text */}
+                <Box padding={"0.5rem"}>
+                  <Typography
+                    height={"80px"}
+                    textOverflow="ellipsis"
+                    sx={{ overflow: "hidden", whiteSpace: "pre" }}
+                  >
+                    {item.content}
+                  </Typography>
+                </Box>
+                {/* Content User Info */}
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  padding={"0.5rem"}
+                  gap="10px"
+                >
+                  <Avatar>
+                    <AccountCircleIcon />
+                  </Avatar>
+                  <Button onClick={() => postDraft(item, index)}>
+                    Publish
+                  </Button>
+                  <Button onClick={() => handleOpen(index)}>Edit</Button>
 
-              </Box>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-
-}
+                  <DraftBlogModal
+                    handleOpen={handleOpen}
+                    handleClose={handleClose}
+                    open={open}
+                    newData={newData}
+                    setNewData={setNewData}
+                    index={index}
+                    info={info}
+                    setInfo={setInfo}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 };

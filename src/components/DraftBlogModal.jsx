@@ -62,7 +62,7 @@ const DraftBlogModal = ({
                 flexDirection: "column",
                 border: "2px solid, black",
                 borderRadius: "1rem",
-                p:"1rem"
+                p: "1rem",
               }}
             >
               <FormControl>
@@ -93,14 +93,12 @@ const DraftBlogModal = ({
                   placeholder="Image URL"
                   value={info?.image}
                   sx={{
-                    
                     padding: "1rem",
                     borderTop: "solid #aaaaaa",
                   }}
                 />
 
-                <FormControl fullWidth sx={{mt:"1rem"}}>
-                 
+                <FormControl fullWidth sx={{ mt: "1rem" }}>
                   <Select
                     labelId="category"
                     id="category"
@@ -109,14 +107,19 @@ const DraftBlogModal = ({
                     name="category"
                   >
                     {categories?.map((item) => (
-                      <MenuItem value={Number(item?.id)} key={item?.id}>{item?.name}</MenuItem>
+                      <MenuItem value={Number(item?.id)} key={item?.id}>
+                        {item?.name}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
-                <Box sx={{display:"flex", m:"1rem auto", gap:"1rem" }}>
-                <Button sx={btnRed} onClick={handleClose}>Cancel</Button>
-                <Button sx={btnGreen} onClick={handleSubmit}>Public</Button>
-
+                <Box sx={{ display: "flex", m: "1rem auto", gap: "1rem" }}>
+                  <Button sx={btnRed} onClick={handleClose}>
+                    Cancel
+                  </Button>
+                  <Button sx={btnGreen} onClick={handleSubmit}>
+                    Public
+                  </Button>
                 </Box>
               </FormControl>
             </Paper>

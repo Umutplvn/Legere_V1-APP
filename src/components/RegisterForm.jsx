@@ -73,7 +73,7 @@ const RegisterForm = () => {
         validationSchema={loginScheme}
         onSubmit={(values, action) => {
           register({ ...values, password2: values.password });
-          
+
           action.resetForm();
           action.setSubmitting(false);
         }}

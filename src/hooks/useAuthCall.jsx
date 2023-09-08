@@ -12,22 +12,22 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useAuthCall = () => {
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const login = async (userData) => {
     dispatch(fetchStart);
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}users/auth/login/`,
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}users/auth/login/`,
         userData
       );
       dispatch(loginSuccess(data));
-      toastSuccessNotify("Login successfull")
-      navigate("/")
-        
+      toastSuccessNotify("Login successfull");
+      navigate("/");
     } catch (error) {
       dispatch(fetchFail());
       console.log(error);
-      toastErrorNotify(error.response.data.non_field_errors[0])
+      toastErrorNotify(error.response.data.non_field_errors[0]);
     }
   };
 
@@ -39,34 +39,28 @@ const useAuthCall = () => {
         userData
       );
       dispatch(registerSuccess(data));
-      toastSuccessNotify("Register successfull")
-      navigate("/")
+      toastSuccessNotify("Register successfull");
+      navigate("/");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify("Register failed")
+      toastErrorNotify("Register failed");
     }
   };
 
   const logout = async () => {
     dispatch(fetchStart);
     try {
-   await axios.post(`${process.env.REACT_APP_BASE_URL}users/auth/logout/`);
+      await axios.post(`${process.env.REACT_APP_BASE_URL}users/auth/logout/`);
       dispatch(logoutSuccess());
-      toastSuccessNotify("Logout successfull")
-      navigate("/login")
+      toastSuccessNotify("Logout successfull");
+      navigate("/login");
     } catch (error) {
       dispatch(fetchFail());
-      toastErrorNotify(error)
-
+      toastErrorNotify(error);
     }
   };
-
-
-
-
-
 
   return { login, register, logout };
 };
 
-export default useAuthCall
+export default useAuthCall;

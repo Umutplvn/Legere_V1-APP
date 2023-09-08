@@ -6,9 +6,9 @@ const blogDataSlice = createSlice({
     blogs: [],
     loading: false,
     error: false,
-    comments:[],
-    categories:[],
-    view:[]
+    comments: [],
+    categories: [],
+    view: [],
   },
 
   reducers: {
@@ -21,23 +21,26 @@ const blogDataSlice = createSlice({
       state.error = true;
     },
 
-    getDataSuccess: (state, {payload}) => {
+    getDataSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = false;
-      state[payload?.url]= payload?.data;
+      state[payload?.url] = payload?.data;
     },
 
-
-    postDataSuccess: (state, {payload}) => {
+    postDataSuccess: (state, { payload }) => {
       state.loading = false;
       state.error = true;
-      state[payload?.url]= payload?.data;
+      state[payload?.url] = payload?.data;
     },
-  }
-}
-)
+  },
+});
 
-
-export const { getDataSuccess, fetchStart, fetchFail, getDataLikeSuccess, postDataSuccess } = blogDataSlice.actions;
+export const {
+  getDataSuccess,
+  fetchStart,
+  fetchFail,
+  getDataLikeSuccess,
+  postDataSuccess,
+} = blogDataSlice.actions;
 
 export default blogDataSlice.reducer;

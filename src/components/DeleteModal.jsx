@@ -29,16 +29,10 @@ const DeleteModal = ({ open, handleClose, id }) => {
             Do you really want to delete this blog?
           </Typography>
           <Box display={"flex"} justifyContent={"center"} gap={2}>
-            <Button
-              onClick={() => handleDelete(id)}
-              sx={btnGreen}
-            >
+            <Button onClick={() => handleDelete(id)} sx={btnGreen}>
               YES
             </Button>
-            <Button
-              onClick={handleClose}
-              sx={btnRed}
-            >
+            <Button onClick={handleClose} sx={btnRed}>
               NO
             </Button>
           </Box>
