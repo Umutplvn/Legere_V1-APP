@@ -47,6 +47,7 @@ export const authSlice = createSlice({
       state.token = payload?.token;
       state.userId = payload?.id;
       state.avatar = payload?.image;
+      state.user = payload;
     },
   },
 });

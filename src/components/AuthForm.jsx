@@ -13,19 +13,22 @@ import {
   loginStyle,
 } from "../styles/globalStyles";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const AuthForm = () => {
   const { login } = useAuthCall();
   const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
-  const setPass = () => {setVisible(!visible);};
+  const setPass = () => {
+    setVisible(!visible);
+  };
 
   let loginScheme = object({
     email: string()
@@ -167,9 +170,18 @@ const AuthForm = () => {
           Don't you have an account?
         </Typography>
         <Box sx={flexBoxRow}>
-          <GitHubIcon sx={icon} />
-          <FacebookIcon sx={icon} />
-          <GoogleIcon sx={icon} />
+          <Link to="https://github.com/Umutplvn">
+            {" "}
+            <GitHubIcon sx={icon} />{" "}
+          </Link>
+          <Link to="https://www.linkedin.com/in/umut-pehlivan-817b28174/">
+            {" "}
+            <LinkedInIcon sx={icon} />
+          </Link>
+          <Link to="https://www.instagram.com/umutpehlivan35/">
+            {" "}
+            <InstagramIcon sx={icon} />
+          </Link>
         </Box>
       </Grid>
     </Box>

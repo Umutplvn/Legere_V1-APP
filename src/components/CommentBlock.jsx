@@ -73,7 +73,8 @@ const CommentBlock = ({ id }) => {
 <Box display={"flex"} flexDirection={"column"} gap={1} width={"100%"}>
 <Typography>{item.content}</Typography>
   <Typography textAlign={"end"} sx={{textAlign:"end"}}>{
-  item.time_stamp}</Typography>
+  item.time_stamp.slice(0,10)} / {item.time_stamp.slice(11,19) }</Typography>
+
 </Box>
 </Box>
 <hr />
