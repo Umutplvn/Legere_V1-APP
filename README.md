@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-# Live at: https://legere.netlify.app/
+## Live at: https://legere.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
