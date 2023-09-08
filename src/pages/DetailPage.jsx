@@ -14,6 +14,11 @@ import DeleteModal from "../components/DeleteModal";
 import UpdateModal from "../components/UpdateModal";
 
 const DetailPage = () => {
+
+  useEffect(() => {
+    getData("blogs");
+  }, []);
+
   const { blogs } = useSelector((state) => state?.blogs);
   const { currentUser } = useSelector((state) => state?.auth);
   const { id } = useParams();
@@ -28,16 +33,13 @@ const DetailPage = () => {
   const handleUpdateOpen = () => setUpdateOpen(true);
   const handleUpdateClose = () => setUpdateOpen(false);
 
-  const likesN = veri[0].likes_n;
-  const likeDet = likesN.map((item) => item.user_id);
+  const likesN = veri[0]?.likes_n;
+  const likeDet = likesN?.map((item) => item.user_id);
 
   const handleLikes = (id) => {
     postData("likes", `${id}/`, "");
   };
 
-  useEffect(() => {
-    getData("blogs");
-  }, []);
 
   return (
     <Grid container sx={detailPageStyle}>
